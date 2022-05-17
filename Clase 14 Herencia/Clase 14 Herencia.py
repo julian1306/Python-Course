@@ -69,17 +69,16 @@ class Abeja(Animal):
 
 ####
 
-  class Perro(Animal):
-    def __init__(self, especie, edad, duenio):  # --------- 1) Podemos crear un nuevo init y guardar todas las variables una a una.
+class Perro(Animal):
+  def __init__(self, especie, edad, duenio):  # --------- 1) Podemos crear un nuevo init y guardar todas las variables una a una.
+    super().__init__(especie, edad)   # O podemos usar super() para llamar al init de la clase padre que ya aceptaba la especie y edad,
+    #                                     y sólo asignar la variable nueva manualmente
+    self.duenio = duenio
+
       # Alternativa 1
       # self.especie = especie
       # self.edad = edad
       # self.dueño = dueño
-
-      # Alternativa 2 ------------------O podemos usar super() para llamar al init de la clase padre que ya aceptaba la especie y edad,
-    #                                     y sólo asignar la variable nueva manualmente
-      super().__init__(especie, edad)
-      self.duenio = duenio
 
 
 mi_perro = Perro("mamifero", 7 ,"luis") # Aca creo perro con especie y edad como en clase madre animal . y le agrego la nueva duenio
