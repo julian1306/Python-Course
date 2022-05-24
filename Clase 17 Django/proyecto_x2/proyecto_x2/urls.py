@@ -22,5 +22,5 @@ from proyecto_x2.views import saludo
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('saludo/', saludo, name='saludo'),
-    #path()
+    
 ]
