@@ -20,7 +20,16 @@
     <h1><p style = color:crimson >El nombre del familiar N{{familiar_nuevo3.id}} es {{familiar_nuevo3.nombre}}<p> </h1>
     <h1><p style = color:crimson >El apellido del familiar es {{familiar_nuevo3.apellido}}<p> </h1>
     <h1><p style = color:crimson >El dni del familiar es {{familiar_nuevo3.dni}}<p> </h1>
-    <h1><p style = color:crimson >Fecha de nacimiento {{familiar_nuevo3.fecha_nacimiento}}<p> </h1>    
-
+    <h1><p style = color:crimson >Fecha de nacimiento {{familiar_nuevo3.fecha_nacimiento}}<p> </h1>  
+        
+    <h1>Familiares:</h1>  
+    <ul>
+        {%for familiar in familiares_all%}
+        <li>
+            <p>DNI: {{familiar.dni}}</p> 
+            <p> Nombre y Apellido: {{familiar.nombre}} {{familiar.apellido}}</p>
+            <p> Fecha de Nacimiento: {{familiar.fecha_nacimiento}}</p>    
+        </li>    
+        {% endfor %}
 </body>
 </html>
