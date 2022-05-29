@@ -14,6 +14,12 @@
 #-http://127.0.0.1:8000/admin/login/?next=/admin/
 
 
+#import importante para el views del root : 
+
+from django.http import HttpRequest
+from django.shortcuts import render  
+
+
 # Crear usuario admin 
 
 # PS C:\Users\Julian\Documents\GitHub\Julian-Python-Curso\Clase 17 Django\proyecto_x2> python manage.py createsuperuser 
@@ -23,6 +29,16 @@
 
 #PS C:\Users\Julian\Documents\GitHub\Julian-Python-Curso\MVT+Julian_Garcia> cd .\MVT_Julian_Garcia\
 #PS C:\Users\Julian\Documents\GitHub\Julian-Python-Curso\MVT+Julian_Garcia\MVT_Julian_Garcia> python manage.py startapp familiares
+
+
+# Como configurar el path de templates en el proyecto 
+
+#En las setting del projecto root cambiar :_ 
+
+#TEMPLATES = [
+#    {
+#        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#        'DIRS': [BASE_DIR/'templates'], ------------------------CAMBIAR ACA PONER SIEMPRE BASE_DIR/'templates' y crear una carpeta que sellame tempaltes 
 
 
 
