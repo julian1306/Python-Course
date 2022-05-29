@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>ACA TE MUESTRO TODOS LOS PRODUCTOS CON UN FOR </h2>
+    {% for producto in productos_all%}
+    <h2>El nombre del producto es: {{producto.name}}</h2>
+    <h2>El precio del producto es:{{producto.price}}</h2>
+    <h2>La descripción del producto es: {{producto.description}}</h2>
+        
+    {% endfor %}
+
+
+</body>
+</html>
