@@ -31,6 +31,13 @@ from django.shortcuts import render
 #PS C:\Users\Julian\Documents\GitHub\Julian-Python-Curso\MVT+Julian_Garcia\MVT_Julian_Garcia> python manage.py startapp familiares
 
 
+# COMO REGISTRAR LAS APP EN EL SITE ADMIN 
+# en el admin.py de la app registrar asi con su correspondiente import antes 
+
+# admin.site.register(Familiares)
+
+
+
 # Como configurar el path de templates en el proyecto 
 
 #En las setting del projecto root cambiar :_ 

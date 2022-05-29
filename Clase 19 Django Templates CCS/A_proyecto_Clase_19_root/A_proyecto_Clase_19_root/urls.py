@@ -19,5 +19,5 @@ from A_proyecto_Clase_19_root.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("index/", index, name= "index" )
+    path("", index, name= "index" )   # ------------------- Pagina de inicio que de una te mande aca al template de index que cree 
 ]
