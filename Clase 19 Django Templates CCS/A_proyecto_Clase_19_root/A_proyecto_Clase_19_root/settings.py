@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-Base_APPS = [
+BASE_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,12 +40,14 @@ Base_APPS = [
 ]
 
 MY_APPS = [
-    "products"
+    "productos"                                    #aca registro mis app en MY_APPS que separamos en bas / my / third 
 ]
 
+THIRD_APPS = [
 
+]
 
-
+INSTALLED_APPS = BASE_APPS + MY_APPS + THIRD_APPS      #aca agregamos todas las app en eINSTALLED_APPS 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
