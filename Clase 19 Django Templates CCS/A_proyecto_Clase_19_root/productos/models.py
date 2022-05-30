@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 
 
-class Procutos(models.Model):
+class Productos(models.Model):
     name = models.CharField(max_length=100)
     price = models.IntegerField()
     description = models.CharField(max_length=5000, blank=True, null=True)  # aca le digo que puede estan en blanco o nulo 
