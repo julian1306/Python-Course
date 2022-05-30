@@ -64,7 +64,7 @@ ROOT_URLCONF = 'A_proyecto_Clase_19_root.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/'templates'],           # ------ Aca le paso la direccion para los tempalte que tan en la carpeta del root llamada tempaltes
+        'DIRS': [BASE_DIR/'templates_root',BASE_DIR/'productos'/'templates_productos'],  # ------ Aca le paso la direccion para los tempalte que tan en la carpeta del root llamada tempaltes
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
