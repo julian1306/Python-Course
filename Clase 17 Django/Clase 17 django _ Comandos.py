@@ -54,3 +54,10 @@ from django.shortcuts import render
 #PS C:\Users\Julian\Documents\GitHub\Julian-Python-Curso\MVT+Julian_Garcia\MVT_Julian_Garcia> python manage.py makemigrations
 #No changes detected
 #PS C:\Users\Julian\Documents\GitHub\Julian-Python-Curso\MVT+Julian_Garcia\MVT_Julian_Garcia> python manage.py migrate  
+
+
+
+#requerimientos 
+
+#pip freeze 
+#pip freeze > requirements.txt
