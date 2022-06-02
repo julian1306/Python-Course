@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        {% block titulo %}   <!--  Aca ccreo el block titulo en el base para usarlo en los otros templates con herencia  -->
-        
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!--  Aca ccreo el block titulo en el base para usarlo en los otros templates con herencia  -->
+    <title> 
+        {% block titulo %}   
+        Inicio 
         {% endblock %}
     </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
@@ -15,7 +16,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="">Inicio</a>                           <!-- Aca voy a inicio -->
+        <a class="nav-link" href="">Inicio</a>                           <!-- Aca voy a inicio -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,9 +26,6 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="/admin">Admin Site <span class="sr-only">(current)</span></a> <!-- ACA lo mando al site admin django -->
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/productos/crear_producto_nuevo">Crear Producto Nuevo</a> <!-- aca en el href= le mando la url a donde quiero mandar-->
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/productos/listar_productos">Ver Productos</a> <!-- aca en el href= le mando la url a donde quiero mandar-->

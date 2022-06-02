@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        {% block titulo %}   <!--  Aca ccreo el block titulo en el base para usarlo en los otros templates con herencia  -->
+        {% block titulo %} 
         Productos
         {% endblock %}
     </title>
@@ -27,10 +27,10 @@
                     <a class="nav-link" href="/admin">Admin Site <span class="sr-only">(current)</span></a> <!-- ACA lo mando al site admin django -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/productos/crear_producto_nuevo">Crear Producto Nuevo</a> <!-- aca en el href= le mando la url a donde quiero mandar-->
+                    <a class="nav-link" href="/productos/listar_productos">Ver Productos</a> <!-- aca en el href= le mando la url a donde quiero mandar-->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/productos/listar_productos">Ver Productos</a> <!-- aca en el href= le mando la url a donde quiero mandar-->
+                    <a class="nav-link" href="/productos/crear_productos">Crear Producto</a> <!-- aca en el href= le mando la url a donde quiero mandar-->
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"

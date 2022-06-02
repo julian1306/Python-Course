@@ -2,21 +2,9 @@ from multiprocessing import context
 from unicodedata import name
 from django.shortcuts import render
 from productos.models import Productos
+from productos.forms import Product_form    # Aca importo el formulario 
 
 # Create your views here.
-
-# Plantilla que crea un producto le manda como producto_nuevo y producto all al HTML producto nuevo asi te muestra el que va a crear y todo en un for . 
-def producto(request):
-    producto_nuevo = Productos.objects.create(
-        name = "AMD Ryzen 2600",
-        price = 250,
-        description = "CPU AMD RYZEN 2600 4 Ghz",
-        SKU = "KHKTK15165",
-        available = True
-        )
-    productos_all = Productos.objects.all()    
-    context = {"producto_nuevo":producto_nuevo, "productos_all":productos_all}
-    return render(request, "crear_producto_nuevo.html", context = context)
 
 
 # Plantilla para mandar todo al HTML productos ( productos.html)
@@ -27,3 +15,26 @@ def productos_all(request):
     context = {"productos_all":productos_all}
 
     return render(request, "listar_productos.html", context = context)
+
+
+# View para create_product.html 
+
+def create_product(request):
+    if request.method == "GET":
+        form = Product_form()
+        context = {"form":form}
+        return render(request, "create_product.html", context=context)
+    else:
+        form = Product_form(request.POST)
+        if form.is_valid():
+            new_product = Productos.objects.create(
+                name = form.cleaned_data['name'],
+                price = form.cleaned_data['price'],
+                description = form.cleaned_data['description'],
+                SKU = form.cleaned_data['SKU'],
+                available = form.cleaned_data['available'],
+            )
+            context = {"new_product":new_product}
+        return render(request, "create_product.html", context=context)    
+
+    
