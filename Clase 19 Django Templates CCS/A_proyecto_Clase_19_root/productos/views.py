@@ -1,3 +1,4 @@
+from itertools import product
 from multiprocessing import context
 from unicodedata import name
 from django.shortcuts import render
@@ -38,3 +39,12 @@ def create_product(request):
         return render(request, "create_product.html", context=context)    
 
     
+
+def search_product(request):
+    print(request.GET) # CLACE PRINT DEL GET QUE LLEGA 
+    #product = Productos.objects.get --- Busca de a una coincidencia
+    search_products = Productos.objects.filter(name__contains = request.GET["search"])  # comando para las busquedas es asi no lo pienses mucho 
+
+    context = {"search_products":search_products}
+
+    return render(request, "search_product.html", context=context)   

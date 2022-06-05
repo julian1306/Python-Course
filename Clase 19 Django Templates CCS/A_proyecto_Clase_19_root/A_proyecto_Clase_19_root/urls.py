@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from A_proyecto_Clase_19_root.views import index
+from django.conf import settings # importo para lo de media 
+from django.conf.urls.static import static # para imagenes 
 
 
 urlpatterns = [
