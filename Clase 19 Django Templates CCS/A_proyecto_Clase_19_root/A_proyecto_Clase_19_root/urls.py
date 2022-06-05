@@ -24,4 +24,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", index, name= "index" ),   # ------------------- Pagina de inicio que de una te mande aca al template de index que cree 
     path("productos/", include("productos.urls")),   #con esto creamos un subdirectorio productos/ y que busque las otras url ahi adentro de la app. es decir ne productos.urls.py 
+
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,6 +1,7 @@
 from itertools import product
 from multiprocessing import context
 from unicodedata import name
+from xml.dom.minidom import Document
 from django.shortcuts import render
 from productos.models import Productos
 from productos.forms import Product_form    # Aca importo el formulario 
@@ -26,7 +27,7 @@ def create_product(request):
         context = {"form":form}
         return render(request, "create_product.html", context=context)
     else:
-        form = Product_form(request.POST)
+        form = Product_form(request.POST, request.FILES) # LA concha de la lora aaca poner request.FILES para la imagen 
         if form.is_valid():
             new_product = Productos.objects.create(
                 name = form.cleaned_data['name'],
@@ -34,6 +35,7 @@ def create_product(request):
                 description = form.cleaned_data['description'],
                 SKU = form.cleaned_data['SKU'],
                 available = form.cleaned_data['available'],
+                imagen = form.cleaned_data['imagen']
             )
             context = {"new_product":new_product}
         return render(request, "create_product.html", context=context)    
