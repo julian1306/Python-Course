@@ -26,7 +26,7 @@ Crear productos
     {% elif new_product %}                                            <!-- aca un elif si existe el new_product que hicimos en la view-->
 
     <div class="card" style="width: 18rem;">
-        <img class={{producto.imagen.url}} src=".../100px180/" alt="Card image cap">
+        <img src={{new_product.imagen.url}} class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{new_product.name}}</h5>
             <p class="card-text">{{new_product.description}}</p>
