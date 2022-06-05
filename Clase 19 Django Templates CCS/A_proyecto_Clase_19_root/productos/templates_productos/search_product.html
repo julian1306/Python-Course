@@ -1,8 +1,9 @@
-{% extends 'base_productos.html' %} <!-- ACA llamo al base.html-->
+{% extends 'base_productos.html' %}
+<!-- ACA llamo al base.html-->
 
 {% block contenido %}  
 <div class="d-flex" style="margin-top:5rem ; margin-left: 7rem">
-    {% for producto in productos_all%}
+    {% for producto in search_products%}
     <div class="card" style="width: 18rem;">
         {% if producto.imagen %}
         <img src={{producto.imagen.url}} class="card-img-top" alt="...">

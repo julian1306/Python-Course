@@ -43,7 +43,7 @@ def create_product(request):
     
 
 def search_product(request):
-    print(request.GET) # CLACE PRINT DEL GET QUE LLEGA 
+    print(request.GET) # ACA LACE PRINT DEL GET QUE LLEGA 
     #product = Productos.objects.get --- Busca de a una coincidencia
     search_products = Productos.objects.filter(name__contains = request.GET["search"])  # comando para las busquedas es asi no lo pienses mucho 
 
