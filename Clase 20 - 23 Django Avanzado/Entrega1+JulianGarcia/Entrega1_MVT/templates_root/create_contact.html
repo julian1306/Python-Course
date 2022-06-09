@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block titulo %}      
+Contacto
+
+{% endblock %}
+
+
+{% block contenido %}          
+
+<h1> Contacto </h1>
+{% if form %}
+    <form action="" method="POST" enctype="multipart/form-data">   <!--  Aca si viene por post hace-->
+        {% csrf_token %}               <!-- token va siempre-->
+        <table>                     <!-- hace que lo muestre como tabla-->
+        {{form.as_table}}        <!-- muestra el formulario que creamos -->
+        </table>
+        <input type="submit", value="Enviar!">   <!-- el boton para enviar -->
+    </form>                         <!-- cierra el form-->
+    {% elif new_contact %}                                            <!-- aca un elif si existe el new_product que hicimos en la view-->
+    <h1>fue creado :</h1>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h2 class="card-title">Nombre : {{new_contact.nombre}}</h2>
+            <h2 class="card-text">Apellido :{{new_contact.apellido}}</h2>
+            <h2 class="card-text">Email: {{new_contact.email}}</h2>
+        </div>
+    </div>   
+
+
+
+{% endif %}
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,58 @@
+
+
+{% extends 'base_productos.html' %}    
+
+
+{% block titulo %}      
+Crear Muebles
+
+{% endblock %}
+
+
+
+{% block busqueda %}
+</form> <!-- Busqueda -->
+<form class="form-inline my-2 my-lg-0" action="/productos/muebles/search_muebles/" method="GET">
+    <input class="form-control mr-sm-2" type="text" placeholder="Buscar Muebles" aria-label="Search" name='search'>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+</form>
+{% endblock %}
+
+
+
+
+
+{% block contenido %}          
+
+<h2> Cargar Nuevo Mueble </h2>
+{% if form %}
+    
+
+    <form action="" method="POST" enctype="multipart/form-data">   <!--  Aca si viene por post hace-->
+        {% csrf_token %}               <!-- token va siempre-->
+        <table>                     <!-- hace que lo muestre como tabla-->
+            {{form.as_table}}        <!-- muestra el formulario que creamos -->
+        </table>
+        <input type="submit", value="Enviar!">   <!-- el boton para enviar -->
+    </form>                         <!-- cierra el form-->
+    {% elif new_product %}                                            <!-- aca un elif si existe el new_product que hicimos en la view-->
+
+    <div class="card" style="width: 18rem;">
+        <img src={{new_product.imagen.url}} class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{new_product.name}}</h5>
+            <p class="card-text">{{new_product.description}}</p>
+            <p class="card-text">{{new_product.price}}</p>
+            <p class="card-text">{{new_product.SKU}}</p>
+            <p class="card-text">{{new_product.tipo}}</p>
+            <p class="card-text">{{new_product.capacidad}}</p>
+        </div>
+    </div>   
+
+
+
+{% endif %}
+
+
+
+{% endblock %}

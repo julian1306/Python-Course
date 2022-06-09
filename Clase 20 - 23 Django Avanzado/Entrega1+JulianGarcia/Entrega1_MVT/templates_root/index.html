@@ -1,0 +1,81 @@
+<!-- ACA llamo al base.html-->
+{% extends 'base.html' %}
+
+
+<!-- ACA llamo al base.html - block titulo-->
+{% block titulo %}
+Inicio
+{% endblock %}
+
+
+{% block contenido %}
+
+
+
+<div class="jumbotron">
+    <h2 class="display-4">OFERTAS HERRAMIENTAS DE HOGAR</h2>
+    <p class="lead">Las mejores ofertas de herramientas de hogar en cuotas sin interes</p>
+    <hr class="my-4">
+    {%if search_products_herramientas%}
+    <div class="d-flex" style="margin-top:5rem ; margin-left: 7rem">
+        {% for producto in search_products_herramientas%}
+        <div class="card" style="width: 18rem;">
+            {% if producto.imagen %}
+            <img src={{producto.imagen.url}} class="card-img-top" alt="...">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{producto.name}}</h5>
+                <p class="card-text">Precio: ${{producto.price}}</p>
+                <p class="card-text">Clase: {{producto.clase}}</p>
+                <a href="#" class="btn btn-primary">Comprar</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {%else%}
+    <div style="color:black">
+        <h1>{{errors_herramientas}}</h1>
+        <div>
+    {%endif%}
+
+    <p>ver bases y condiciones</p>
+    <a class="btn btn-primary btn-lg" href="contacto/" role="button">Recibir ofertas por emial</a>
+</div>
+
+
+
+
+
+<div class="jumbotron">
+    <h2 class="display-4">OFERTAS MUEBLES DE HOGAR</h2>
+    <p class="lead">Las mejores ofertas en Muebles de hogar en cuotas sin interes</p>
+    <hr class="my-4">
+    {%if search_products_muebles%}
+    <div class="d-flex" style="margin-top:5rem ; margin-left: 7rem">
+        {% for producto in search_products_muebles%}
+        <div class="card" style="width: 18rem;">
+            {% if producto.imagen %}
+            <img src={{producto.imagen.url}} class="card-img-top" alt="...">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{producto.name}}</h5>
+                <p class="card-text">Precio: ${{producto.price}}</p>
+                <p class="card-text">Tipo: {{producto.tipo}}</p>
+                <a href="#" class="btn btn-primary">Comprar</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {%else%}
+    <div style="color:black">
+        <h1>{{errors_muebles}}</h1>
+        <div>
+    {%endif%}
+
+    <p>ver bases y condiciones</p>
+    <a class="btn btn-primary btn-lg" href="contacto/" role="button">Recibir ofertas por email</a>
+</div>
+
+
+
+{% endblock %}

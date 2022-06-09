@@ -1,0 +1,42 @@
+{% extends 'base_productos.html' %}
+
+{% block titulo %}
+Buscar Herramientas
+{% endblock %}
+
+{% block busqueda %}
+</form> <!-- Busqueda -->
+<form class="form-inline my-2 my-lg-0" action="/productos/herramientas/search_herramientas/" method="GET">
+    <input class="form-control mr-sm-2" type="text" placeholder="Buscar herramientas" aria-label="Search" name='search'>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+</form>
+{% endblock %}
+
+
+{% block contenido %}
+{%if search_products%}    
+<div class="d-flex" style="margin-top:5rem ; margin-left: 7rem">
+    {% for producto in search_products%}
+    <div class="card" style="width: 18rem;">
+        {% if producto.imagen %}
+        <img src={{producto.imagen.url}} class="card-img-top" alt="...">
+        {% endif %}
+        <div class="card-body">
+        <h5 class="card-title">{{producto.name}}</h5>
+        <p class="card-text">Precio: ${{producto.price}}</p>
+        <p class="card-text">Descripcion: {{producto.description}}</p>
+        <p class="card-text">SKU: {{producto.SKU}}</p>
+        <p class="card-text">Disponibilidad: {{producto.available}}</p>
+        <p class="card-text">Energia: {{producto.energia}}</p>
+        <p class="card-text">Clase: {{producto.clase}}</p>
+        <a href="#" class="btn btn-primary">Comprar</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{%else%} 
+<div style = "color:black">
+    <h1>{{errors}}</h1> 
+<div>
+{%endif%} 
+{% endblock %}
