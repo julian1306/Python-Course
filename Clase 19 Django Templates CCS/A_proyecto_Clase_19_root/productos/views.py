@@ -19,6 +19,25 @@ def productos_all(request):
     return render(request, "listar_productos.html", context = context)
 
 
+# Product_detail.html view para el detalle 
+
+def detail_product(request, pk):  # Aca le paso la request y el pk que es lo mismo que el id del producto 
+    try:
+        producto = Productos.objects.get(id=pk) # esto va asi para que con el get busque el pk/id , va con un try por si no encuenta nada 
+        context= {"producto":producto}
+        return render(request, "product_detail.html", context=context)
+    except:
+        context = {"error": "El producto no existe"}
+        return render(request, "product_detail.html", context=context)  
+
+
+
+
+
+
+
+
+
 # View para create_product.html 
 
 def create_product(request):

@@ -1,0 +1,28 @@
+{% extends 'base_productos.html' %} <!-- ACA llamo al base.html-->
+
+
+{% block titulo %}      
+Detalles Productos
+
+{% endblock %}
+
+
+{% block contenido %}  
+<div class="d-flex" style="margin-top:5rem ; margin-left: 7rem">
+    {if }
+    <div class="card" style="width: 18rem;">
+        {% if producto.imagen %}
+        <img src={{producto.imagen.url}} class="card-img-top" alt="...">
+        {% endif %}
+        <div class="card-body">
+        <h5 class="card-title">{{producto.name}}</h5>
+        <p class="card-text">{{producto.price}}</p>
+        <p class="card-text">{{producto.description}}</p>
+        <p class="card-text">{{producto.SKU}}</p>
+        <p class="card-text">{{producto.available}}</p>
+        <a href="#" class="btn btn-primary">Comprar</a> <!-- Acan el el Href habria que agregar un url de carrito de compra por ej -->
+        </div>
+    </div>
+
+</div>
+{% endblock %}
