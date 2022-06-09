@@ -35,6 +35,8 @@ def detail_product(request, pk):  # Aca le paso la request y el pk que es lo mis
         return render(request, "product_detail.html", context=context)   # si hay error lo mando a lister_productos.html y muestra error
 
 
+# Para borrar va a delete_product.html" 
+
 def delete_product(request, pk):
     print(request.GET)
     try:    
