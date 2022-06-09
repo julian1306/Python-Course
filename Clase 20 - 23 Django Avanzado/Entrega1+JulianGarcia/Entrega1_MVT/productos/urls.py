@@ -2,7 +2,7 @@
 #URLS dentro de http://127.0.0.1:8000/productos/
 
 from django.urls import path, include
-from productos.views import productos_all,detail_product,create_product, search_product,listar_herramientas,search_herramientas,create_herramientas,listar_muebles, search_muebles, create_muebles
+from productos.views import productos_all,detail_product,delete_product,create_product, search_product,listar_herramientas,search_herramientas,create_herramientas,listar_muebles, search_muebles, create_muebles
 
 
 
@@ -18,6 +18,7 @@ urlpatterns = [
     path("muebles/listar_muebles/", listar_muebles, name="listar_muebles"),
     path("muebles/search_muebles/", search_muebles, name="search_muebles"),
     path("muebles/create_muebles/", create_muebles, name="create_muebles"),
-    path("product_detail/<int:pk>/", detail_product, name = "product_detail"), # aca con el <int:id> aclaramos que le vamos a pasar un entero llamado pk 
+    path("product_detail/<int:pk>/", detail_product, name = "product_detail"), # aca con el <int:id> aclaramos que le vamos a pasar un entero llamado pk
+    path("delete_product/<int:pk>/", delete_product, name = "delete_product"), 
     
 ]

@@ -1,0 +1,30 @@
+{% extends 'base_productos.html' %} <!-- ACA llamo al base.html-->
+
+
+{% block titulo %}      
+Detalles Productos
+
+{% endblock %}
+
+
+{% block contenido %} 
+
+{%if producto %}
+
+<h3 style="color:black">Estas por Eliminar el producto {{producto.name}}</h3>
+
+</form>
+<form action= "/productos/delete_product/{{producto.id}}/" method="POST">
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">Eliminar</button>
+</form>
+
+
+{%else%}
+
+{{message}}
+
+{%endif%}
+
+
+{% endblock %}
