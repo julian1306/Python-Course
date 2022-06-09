@@ -13,7 +13,7 @@
         <p class="card-text">{{producto.description}}</p>
         <p class="card-text">{{producto.SKU}}</p>
         <p class="card-text">{{producto.available}}</p>
-        <a href="#" class="btn btn-primary">Comprar</a> <!-- Acan el el Href habria que agregar un url de carrito de compra por ej -->
+        <a href="/productos/product_detail/{{producto.id}}/" class="btn btn-primary">Detalles</a> <!-- Aca lo mando al url del detalle  -->
         </div>
     </div>
     {% endfor %}
