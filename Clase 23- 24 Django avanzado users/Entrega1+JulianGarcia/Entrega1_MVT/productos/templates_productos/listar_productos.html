@@ -1,0 +1,28 @@
+{% extends 'base_productos.html' %} <!-- ACA llamo al base.html-->
+
+{% block titulo %}
+Listar Productos
+{% endblock %}
+
+{% block contenido %} 
+
+
+
+
+<div class="d-flex" style="margin-top:5rem ; margin-left: 7rem">
+    {% for producto in productos_all%}
+    <div class="card" style="width: 18rem;">
+        {% if producto.imagen %}
+        <img src={{producto.imagen.url}} class="card-img-top" alt="...">
+        {% endif %}
+        <div class="card-body">
+        <h5 class="card-title">{{producto.name}}</h5>
+        <p class="card-text">Precio: ${{producto.price}}</p>
+        <p class="card-text">Descripcion: {{producto.description}}</p>
+        <p class="card-text">Disponibilidad: {{producto.available}}</p>
+        <a href="/productos/product_detail/{{producto.id}}/" class="btn btn-primary">Detalles</a> <!-- Aca lo mando al url del detalle  -->
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
