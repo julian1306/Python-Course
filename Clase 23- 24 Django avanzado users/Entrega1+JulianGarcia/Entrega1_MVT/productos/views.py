@@ -6,33 +6,63 @@ from xml.dom.minidom import Document
 from django.shortcuts import render
 from productos.models import Productos, Productos_herramientas, Productos_muebles, Contacto
 from productos.forms import Product_form, Herramientas_form, Muebles_form    # Aca importo el formulario 
+from django.views.generic import ListView, DetailView , CreateView # Aca importamos para la list view para las class 
+from django.urls import reverse  # para mandar a otra funcion se usa en linea 33 
 
 # Create your views here.
+
+# Products all listar_productos.html 
+
+class Productos_all(ListView):
+    model = Productos
+    template_name = "listar_productos.html"
+    queryset = Productos.objects.filter(available = True) # para mostras si estan activos 
+# Product_detail.html view para el detalle 
+
+class Detail_product(DetailView):
+    model= Productos
+    template_name = "detail_product.html"
+
+# View para create_product.html 
+
+class Create_product(CreateView):
+    model = Productos
+    template_name = "create_product.html"
+    fields = "__all__"
+
+    def get_success_url(self):
+        return reverse("detail_product",kwargs={'pk':self.object.pk} )  # Aca con el reverse llamando al html  con los kwargs le paso el pk de lo que creamos y muestra el detalle 
 
 
 
 
 # Products all listar_productos.html 
 
-def productos_all(request):
+# def productos_all(request):
 
-    productos_all = Productos.objects.all()    
-    context = {"productos_all":productos_all}
+#     productos_all = Productos.objects.all()    
+#     context = {"productos_all":productos_all}
 
-    return render(request, "listar_productos.html" , context = context)
+#     return render(request, "listar_productos.html" , context = context)
+
+
 
 
 
 # Product_detail.html view para el detalle 
 
-def detail_product(request, pk):  # Aca le paso la request y el pk que es lo mismo que el id del producto 
-    try:
-        producto = Productos.objects.get(id=pk) # esto va asi para que con el get busque el pk/id , va con un try por si no encuenta nada 
-        context= {"producto":producto}
-        return render(request, "product_detail.html", context=context) # lo mando a product_detail.html
-    except:
-        context = {"error": "El producto no existe"}
-        return render(request, "product_detail.html", context=context)   # si hay error lo mando a lister_productos.html y muestra error
+# def detail_product(request, pk):  # Aca le paso la request y el pk que es lo mismo que el id del producto 
+#     try:
+#         producto = Productos.objects.get(id=pk) # esto va asi para que con el get busque el pk/id , va con un try por si no encuenta nada 
+#         context= {"producto":producto}
+#         return render(request, "product_detail.html", context=context) # lo mando a product_detail.html
+#     except:
+#         context = {"error": "El producto no existe"}
+#         return render(request, "product_detail.html", context=context)   # si hay error lo mando a lister_productos.html y muestra error
+
+
+
+
 
 
 # Para borrar va a delete_product.html" 
@@ -57,24 +87,27 @@ def delete_product(request, pk):
 
 # View para create_product.html 
 
-def create_product(request):
-    if request.method == "GET":
-        form = Product_form()
-        context = {"form":form}
-        return render(request, "create_product.html", context=context)
-    else:
-        form = Product_form(request.POST, request.FILES) # LA concha de la lora aaca poner request.FILES para la imagen 
-        if form.is_valid():
-            new_product = Productos.objects.create(
-                name = form.cleaned_data['name'],
-                price = form.cleaned_data['price'],
-                description = form.cleaned_data['description'],
-                SKU = form.cleaned_data['SKU'],
-                available = form.cleaned_data['available'],
-                imagen = form.cleaned_data['imagen']
-            )
-            context = {"new_product":new_product}
-        return render(request, "create_product.html", context=context)    
+# def create_product(request):
+#     if request.method == "GET":
+#         form = Product_form()
+#         context = {"form":form}
+#         return render(request, "create_product.html", context=context)
+#     else:
+#         form = Product_form(request.POST, request.FILES) # LA concha de la lora aaca poner request.FILES para la imagen 
+#         if form.is_valid():
+#             new_product = Productos.objects.create(
+#                 name = form.cleaned_data['name'],
+#                 price = form.cleaned_data['price'],
+#                 description = form.cleaned_data['description'],
+#                 SKU = form.cleaned_data['SKU'],
+#                 available = form.cleaned_data['available'],
+#                 imagen = form.cleaned_data['imagen']
+#             )
+#             context = {"new_product":new_product}
+#         return render(request, "create_product.html", context=context)    
+
+
+
 
 
 
