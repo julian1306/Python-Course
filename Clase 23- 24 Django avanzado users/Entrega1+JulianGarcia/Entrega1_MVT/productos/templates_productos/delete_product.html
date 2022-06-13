@@ -9,22 +9,19 @@ Detalles Productos
 
 {% block contenido %} 
 
-{%if producto %}
 
-<h3 style="color:black">Estas por Eliminar el producto {{producto.name}}</h3>
 
-</form>
-<form action= "/productos/delete_product/{{producto.id}}/" method="POST">
+<h3 style="color:black">Estas por Eliminar el producto {{object.name}}</h3>  <!-- Ahora Va object por deault del deletview-->
+
+<form method = "POST"> <!-- Ahora va solo por POST A si mismo -->
     {% csrf_token %}
     <button class="btn btn-danger" type="submit">Eliminar</button>
 </form>
 
 
-{%else%}
+
 
 {{message}}
-
-{%endif%}
 
 
 {% endblock %}

@@ -6,7 +6,7 @@ from xml.dom.minidom import Document
 from django.shortcuts import render
 from productos.models import Productos, Productos_herramientas, Productos_muebles, Contacto
 from productos.forms import Product_form, Herramientas_form, Muebles_form    # Aca importo el formulario 
-from django.views.generic import ListView, DetailView , CreateView # Aca importamos para la list view para las class 
+from django.views.generic import ListView, DetailView , CreateView, DeleteView , UpdateView # Aca importamos para la list view para las class 
 from django.urls import reverse  # para mandar a otra funcion se usa en linea 33 
 
 # Create your views here.
@@ -33,6 +33,25 @@ class Create_product(CreateView):
     def get_success_url(self):
         return reverse("detail_product",kwargs={'pk':self.object.pk} )  # Aca con el reverse llamando al html  con los kwargs le paso el pk de lo que creamos y muestra el detalle 
 
+# Para borrar va a delete_product.html" 
+
+class Delete_product(DeleteView):
+    model = Productos
+    template_name = "delete_product.html"
+
+    def get_success_url(self):
+        return reverse("listar_productos") # Elimina y nos manda a todos los procutos 
+
+# Nuevo para update_product.html
+
+class Update_product(UpdateView):
+    model = Productos
+    template_name = 'update_product.html'
+    fields = '__all__'
+
+
+    def get_success_url(self):
+        return reverse('detail_product', kwargs = {'pk':self.object.pk}) # lo mando al url dle name detail_product con el id
 
 
 
@@ -67,21 +86,21 @@ class Create_product(CreateView):
 
 # Para borrar va a delete_product.html" 
 
-def delete_product(request, pk):
-    print(request.GET)
-    try:    
-        if request.method == "GET":
-            producto = Productos.objects.get(id=pk)
-            context= {"producto":producto}
-            return render(request, 'delete_product.html', context=context)
-        else:
-            producto = Productos.objects.get(id=pk)
-            producto.delete()
-            context = {"message":"producto eliminado correctamente"} 
-            return render(request, "delete_product.html", context = context ) # lo elimina y lo manod a listar_productos.html y le muestra el {{message}}
-    except:
-        context = {"errors": "El producto no existe"}
-        return render(request, "delete_product.html", context=context)  # si 
+# def delete_product(request, pk):
+#     print(request.GET)
+#     try:    
+#         if request.method == "GET":
+#             producto = Productos.objects.get(id=pk)
+#             context= {"producto":producto}
+#             return render(request, 'delete_product.html', context=context)
+#         else:
+#             producto = Productos.objects.get(id=pk)
+#             producto.delete()
+#             context = {"message":"producto eliminado correctamente"} 
+#             return render(request, "delete_product.html", context = context ) # lo elimina y lo manod a listar_productos.html y le muestra el {{message}}
+#     except:
+#         context = {"errors": "El producto no existe"}
+#         return render(request, "delete_product.html", context=context)  # si 
 
 
 

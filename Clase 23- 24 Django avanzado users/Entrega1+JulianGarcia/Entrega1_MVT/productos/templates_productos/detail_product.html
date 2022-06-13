@@ -18,11 +18,11 @@ Detalles Productos
         {% endif %}
         <div class="card-body">
         <h5 class="card-title">{{object.name}}</h5>
-        <p class="card-text">{{object.price}}</p>
-        <p class="card-text">{{object.description}}</p>
-        <p class="card-text">{{object.SKU}}</p>
-        <p class="card-text">{{object.available}}</p>
-        <a href="#" class="btn btn-primary">Comprar</a> <!-- Acan el el Href habria que agregar un url de carrito de compra por ej -->
+        <p class="card-text">Precio: ${{object.price}}</p>
+        <p class="card-text">Descripcion: {{object.description}}</p>
+        <p class="card-text">SKU: {{object.SKU}}</p>
+        <p class="card-text">Disponibilidad: {{object.available}}</p>
+        <a href="/productos/update_product/{{object.id}}/" class="btn btn-primary">Editar</a>
         <a href="/productos/delete_product/{{object.id}}/" class="btn btn-danger">Eliminar</a> <!-- Aca lo mando al url del detalle  -->
         </div>
     </div>
