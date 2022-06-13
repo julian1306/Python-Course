@@ -55,80 +55,6 @@ class Update_product(UpdateView):
 
 
 
-# Products all listar_productos.html 
-
-# def productos_all(request):
-
-#     productos_all = Productos.objects.all()    
-#     context = {"productos_all":productos_all}
-
-#     return render(request, "listar_productos.html" , context = context)
-
-
-
-
-
-# Product_detail.html view para el detalle 
-
-# def detail_product(request, pk):  # Aca le paso la request y el pk que es lo mismo que el id del producto 
-#     try:
-#         producto = Productos.objects.get(id=pk) # esto va asi para que con el get busque el pk/id , va con un try por si no encuenta nada 
-#         context= {"producto":producto}
-#         return render(request, "product_detail.html", context=context) # lo mando a product_detail.html
-#     except:
-#         context = {"error": "El producto no existe"}
-#         return render(request, "product_detail.html", context=context)   # si hay error lo mando a lister_productos.html y muestra error
-
-
-
-
-
-
-# Para borrar va a delete_product.html" 
-
-# def delete_product(request, pk):
-#     print(request.GET)
-#     try:    
-#         if request.method == "GET":
-#             producto = Productos.objects.get(id=pk)
-#             context= {"producto":producto}
-#             return render(request, 'delete_product.html', context=context)
-#         else:
-#             producto = Productos.objects.get(id=pk)
-#             producto.delete()
-#             context = {"message":"producto eliminado correctamente"} 
-#             return render(request, "delete_product.html", context = context ) # lo elimina y lo manod a listar_productos.html y le muestra el {{message}}
-#     except:
-#         context = {"errors": "El producto no existe"}
-#         return render(request, "delete_product.html", context=context)  # si 
-
-
-
-# View para create_product.html 
-
-# def create_product(request):
-#     if request.method == "GET":
-#         form = Product_form()
-#         context = {"form":form}
-#         return render(request, "create_product.html", context=context)
-#     else:
-#         form = Product_form(request.POST, request.FILES) # LA concha de la lora aaca poner request.FILES para la imagen 
-#         if form.is_valid():
-#             new_product = Productos.objects.create(
-#                 name = form.cleaned_data['name'],
-#                 price = form.cleaned_data['price'],
-#                 description = form.cleaned_data['description'],
-#                 SKU = form.cleaned_data['SKU'],
-#                 available = form.cleaned_data['available'],
-#                 imagen = form.cleaned_data['imagen']
-#             )
-#             context = {"new_product":new_product}
-#         return render(request, "create_product.html", context=context)    
-
-
-
-
-
 
 # View para el seach_product.html
 
@@ -239,3 +165,81 @@ def create_muebles(request):
             )
             context = {"new_product":new_product}
         return render(request, "create_muebles.html", context=context)    
+
+
+
+
+
+
+# Products all listar_productos.html 
+
+# def productos_all(request):
+
+#     productos_all = Productos.objects.all()    
+#     context = {"productos_all":productos_all}
+
+#     return render(request, "listar_productos.html" , context = context)
+
+
+
+
+
+# Product_detail.html view para el detalle 
+
+# def detail_product(request, pk):  # Aca le paso la request y el pk que es lo mismo que el id del producto 
+#     try:
+#         producto = Productos.objects.get(id=pk) # esto va asi para que con el get busque el pk/id , va con un try por si no encuenta nada 
+#         context= {"producto":producto}
+#         return render(request, "product_detail.html", context=context) # lo mando a product_detail.html
+#     except:
+#         context = {"error": "El producto no existe"}
+#         return render(request, "product_detail.html", context=context)   # si hay error lo mando a lister_productos.html y muestra error
+
+
+
+
+
+
+# Para borrar va a delete_product.html" 
+
+# def delete_product(request, pk):
+#     print(request.GET)
+#     try:    
+#         if request.method == "GET":
+#             producto = Productos.objects.get(id=pk)
+#             context= {"producto":producto}
+#             return render(request, 'delete_product.html', context=context)
+#         else:
+#             producto = Productos.objects.get(id=pk)
+#             producto.delete()
+#             context = {"message":"producto eliminado correctamente"} 
+#             return render(request, "delete_product.html", context = context ) # lo elimina y lo manod a listar_productos.html y le muestra el {{message}}
+#     except:
+#         context = {"errors": "El producto no existe"}
+#         return render(request, "delete_product.html", context=context)  # si 
+
+
+
+# View para create_product.html 
+
+# def create_product(request):
+#     if request.method == "GET":
+#         form = Product_form()
+#         context = {"form":form}
+#         return render(request, "create_product.html", context=context)
+#     else:
+#         form = Product_form(request.POST, request.FILES) # LA concha de la lora aaca poner request.FILES para la imagen 
+#         if form.is_valid():
+#             new_product = Productos.objects.create(
+#                 name = form.cleaned_data['name'],
+#                 price = form.cleaned_data['price'],
+#                 description = form.cleaned_data['description'],
+#                 SKU = form.cleaned_data['SKU'],
+#                 available = form.cleaned_data['available'],
+#                 imagen = form.cleaned_data['imagen']
+#             )
+#             context = {"new_product":new_product}
+#         return render(request, "create_product.html", context=context)    
+
+
+
