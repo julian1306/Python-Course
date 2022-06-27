@@ -10,6 +10,9 @@ Inicio
 
 {% block contenido %}
 
+{% if user.is_authenticated%}
+<h2 class="display-4">{{message}}</h2>
+{% endif %}
 
 
 <div class="jumbotron">
