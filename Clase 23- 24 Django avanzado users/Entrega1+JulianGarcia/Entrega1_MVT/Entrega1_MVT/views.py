@@ -12,6 +12,10 @@ from django.contrib.auth import authenticate, login     # verifica la auth y el 
 # def oara login 
 
 def login_view(request):
+    
+    
+    
+    
     if request.method == "POST":                  # si es post osea manda el formulario por post 
         form = AuthenticationForm(request, data = request.POST) #le pasa la data al POST 
         
@@ -19,11 +23,9 @@ def login_view(request):
             username = form.cleaned_data["username"] # agarra la info que el se cargo en el formulario y le asigna la variable username 
             password = form.cleaned_data["password"] # agarra la pass del form y le asig la variable password 
             user = authenticate(username=username, password=password) # aca el authenticate compara y te devuelve el user
-            
-            if user is not None:                 # si lo encuentra osea que no es none 
-                login(request, user)             #Logea a ese usuario 
-                context= {"message": f"bienvenido {username}"}
-                return redirect("index")                         # lo redirecciono al index    
+            login(request, user)             #Logea a ese usuario 
+            context= {"message": f"bienvenido {username}"}
+            return redirect("index")                         # lo redirecciono al index      
         else:
             errors = form.errors                         # te tira los errores del formulario 
             form = AuthenticationForm()                  #traigo el form de vuelta  
