@@ -13,10 +13,12 @@ from django.contrib.auth import authenticate, login     # verifica la auth y el 
 
 def login_view(request):
     
+    if request.method == "GET":                                 # si es por GET osea cuando apenas ingresa a la pag 
+        form = AuthenticationForm() # formulario importado linea 8
+        context = {"form":form}
+        return render(request,"auth/login.html", context=context)
     
-    
-    
-    if request.method == "POST":                  # si es post osea manda el formulario por post 
+    elif request.method == "POST":                  # si es post osea manda el formulario por post 
         form = AuthenticationForm(request, data = request.POST) #le pasa la data al POST 
         
         if form.is_valid():
@@ -31,12 +33,8 @@ def login_view(request):
             form = AuthenticationForm()                  #traigo el form de vuelta  
             context = {'errors':errors, 'form':form}          # le mando los errores y el form de nuevo para que intente logear 
             return render(request, 'auth/login.html', context = context)
-
-    else:                                        # si es por GET osea cuando apenas ingresa a la pag 
-        form = AuthenticationForm() # formulario importado linea 8
-        context = {"form":form}
-        return render(request,"auth/login.html", context=context)
-
+    else: 
+        pass
 
 
 
