@@ -7,9 +7,9 @@ from django.shortcuts import redirect, render
 from productos.models import Productos,Productos_herramientas,Productos_muebles,Contacto
 from productos.forms import Contacto_form
 from django.contrib.auth.forms import AuthenticationForm   ### Formulario para auth
-from django.contrib.auth import authenticate, login     # verifica la auth y el login 
+from django.contrib.auth import authenticate, login, logout     # verifica la auth y el login 
 
-# def oara login 
+# def para login 
 
 def login_view(request):
     
@@ -36,7 +36,11 @@ def login_view(request):
     else: 
         pass
 
+# Para logout 
 
+def logout_view(request):
+    logout(request)
+    return redirect("index")
 
 
 
