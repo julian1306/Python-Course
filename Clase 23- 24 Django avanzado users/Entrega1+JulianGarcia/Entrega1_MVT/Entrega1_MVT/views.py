@@ -2,6 +2,8 @@
 
 from datetime import datetime
 import re
+from math import ceil
+from django.forms import NullBooleanField
 from django.http import HttpRequest
 from django.shortcuts import redirect, render
 from productos.models import Productos,Productos_herramientas,Productos_muebles,Contacto
@@ -79,7 +81,25 @@ def index(request):
     print(request.user.is_authenticated)                # para saner si el user esta auth 
 
 
-    username = request.user                      # aca para que saque el user que esta logeado y lo pueda mostra en el context con un "message"
+    username = request.user                    # aca para que saque el user que esta logeado y lo pueda mostra en el context con un "message"
+
+
+
+    if request.user.is_superuser:
+        for product in Productos.objects.filter(available=True):
+            multiplier = 10/100
+            old_price = product.price
+            product.new_price = ceil(old_price - (old_price * multiplier))
+            product.save(update_fields=['new_price'])
+            print(product.name, product.price, product.new_price)
+    else:
+        for product in Productos.objects.filter(available=True):
+            product.new_price = 0                                         # Ver como pasarlo a null convierte a 0 ok 
+            product.save(update_fields=['new_price'])
+            print("brian", product.name, product.price, product.new_price)
+    
+
+
 
     #Ofertas general index 
 
