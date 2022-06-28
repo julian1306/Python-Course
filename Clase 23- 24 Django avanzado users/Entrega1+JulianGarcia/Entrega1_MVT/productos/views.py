@@ -14,12 +14,11 @@ from django.urls import reverse  # para mandar a otra funcion se usa en linea 33
 # Products all listar_productos.html 
 
 
-class Productos_all(ListView):
+class Productos_all(ListView):  
     model = Productos
     template_name = "listar_productos.html"
-    queryset = Productos.objects.filter(available = True) # para mostras si estan activos 
-
-
+    queryset = Productos.objects.filter(available = True) # para mostras si estan activos    
+    
 
 
 # Product_detail.html view para el detalle 
