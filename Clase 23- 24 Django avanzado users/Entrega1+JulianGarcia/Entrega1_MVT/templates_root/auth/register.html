@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block titulo %}      
+Registro
+
+{% endblock %}
+
+
+{% block contenido %}          
+
+
+
+
+{% if form %}
+    <h2 style="margin-left:65rem;margin-top:5rem"> Registro </h2>
+    <form action="" method="POST" enctype="multipart/form-data" style="margin-left:65rem;margin-top:3rem">   <!--  Aca si viene por post hace-->
+        {% csrf_token %}               <!-- token va siempre-->
+        <table>                     <!-- hace que lo muestre como tabla-->
+        {{form.as_table}}        <!-- muestra el formulario que creamos -->
+        </table>
+        <input type="submit", value="Login">   <!-- el boton para enviar -->
+    </form>    
+{% endif %}
+
+{% if errors %}
+<h5 style="margin-left:40rem;margin-top:3rem">{{errors}} </h5>
+{% endif %}
+
+
+{% endblock %}

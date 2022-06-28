@@ -6,8 +6,34 @@ from django.http import HttpRequest
 from django.shortcuts import redirect, render
 from productos.models import Productos,Productos_herramientas,Productos_muebles,Contacto
 from productos.forms import Contacto_form
-from django.contrib.auth.forms import AuthenticationForm   ### Formulario para auth
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm   ### Formulario para auth y registrer 
 from django.contrib.auth import authenticate, login, logout     # verifica la auth y el login 
+
+
+#def registro 
+
+
+def register_view(request):
+    if request.method == "GET":                                 # si es por GET osea cuando apenas ingresa a la pag 
+        form = UserCreationForm()                               # formulario importado linea 8
+        context = {"form":form}
+        return render(request,"auth/register.html", context=context)
+
+    elif request.method == "POST":                                      # si es post osea manda el formulario por post 
+        form = UserCreationForm(request.POST)           #le pasa la data al POST 
+        if form.is_valid():
+            form.save()
+            #Aca lo logea 
+            username = form.cleaned_data["username"] 
+            password = form.cleaned_data["password1"]
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect("index")
+        else:
+            errors = form.errors                         # te tira los errores del formulario 
+            form = UserCreationForm()                  #traigo el form de vuelta  
+            context = {'errors':errors, 'form':form}          # le mando los errores y el form de nuevo para que intente logear 
+            return render(request, 'auth/login.html', context = context)                                                
 
 # def para login 
 
@@ -26,7 +52,6 @@ def login_view(request):
             password = form.cleaned_data["password"] # agarra la pass del form y le asig la variable password 
             user = authenticate(username=username, password=password) # aca el authenticate compara y te devuelve el user
             login(request, user)             #Logea a ese usuario 
-            context= {"message": f"bienvenido {username}"}
             return redirect("index")                         # lo redirecciono al index      
         else:
             errors = form.errors                         # te tira los errores del formulario 
