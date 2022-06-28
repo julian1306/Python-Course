@@ -24,9 +24,9 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                {% if user.is_authenticated%}
+                {% if user.is_superuser%}
                 <li class="nav-item active">
-                    <a class="nav-link" href="/admin/">Admin Site <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/admin/" style="color: rgb(209, 12, 12);">Admin Site <span class="sr-only">(current)</span></a>
                     <!-- ACA lo mando al site admin django -->
                 </li>
                 {% endif%}
@@ -75,6 +75,10 @@
             {% endblock %}
         </div>
     </nav>
+    {% if user.is_authenticated%}
+    <h2 class="display-4">{{bienvenida}}</h2>
+    {% endif %}
+
     {% block contenido %}
     <!--  Aca ccreo el block contenido en el base para usarlo en los otros templates con herencia  -->
 

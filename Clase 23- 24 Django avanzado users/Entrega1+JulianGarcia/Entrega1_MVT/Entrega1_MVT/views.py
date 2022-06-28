@@ -6,8 +6,9 @@ from django.http import HttpRequest
 from django.shortcuts import redirect, render
 from productos.models import Productos,Productos_herramientas,Productos_muebles,Contacto
 from productos.forms import Contacto_form
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm   ### Formulario para auth y registrer 
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm   ### Formulario para auth y registrer default django 
 from django.contrib.auth import authenticate, login, logout     # verifica la auth y el login 
+from Entrega1_MVT.forms import User_registration_form # registro custom 
 
 
 #def registro 
@@ -15,12 +16,12 @@ from django.contrib.auth import authenticate, login, logout     # verifica la au
 
 def register_view(request):
     if request.method == "GET":                                 # si es por GET osea cuando apenas ingresa a la pag 
-        form = UserCreationForm()                               # formulario importado linea 8
+        form = User_registration_form()                               # formulario importado linea 8
         context = {"form":form}
         return render(request,"auth/register.html", context=context)
 
     elif request.method == "POST":                                      # si es post osea manda el formulario por post 
-        form = UserCreationForm(request.POST)           #le pasa la data al POST 
+        form = User_registration_form(request.POST)           #le pasa la data al POST 
         if form.is_valid():
             form.save()
             #Aca lo logea 
@@ -31,7 +32,7 @@ def register_view(request):
             return redirect("index")
         else:
             errors = form.errors                         # te tira los errores del formulario 
-            form = UserCreationForm()                  #traigo el form de vuelta  
+            form = User_registration_form()                  #traigo el form de vuelta  
             context = {'errors':errors, 'form':form}          # le mando los errores y el form de nuevo para que intente logear 
             return render(request, 'auth/login.html', context = context)                                                
 
@@ -86,9 +87,9 @@ def index(request):
     search_products_muebles = Productos_muebles.objects.filter(tipo = "Hogar")
 
     if search_products_herramientas.exists() or search_products_muebles.exists():
-        context = {"message": f"Bienvenido {username}","search_products_herramientas":search_products_herramientas,"search_products_muebles":search_products_muebles}
+        context = {"bienvenida": f"Bienvenido {username}","search_products_herramientas":search_products_herramientas,"search_products_muebles":search_products_muebles}
     else:
-        context = {"message": f"Bienvenido {username}",'errors_herramientas': f'Disculpe, no se encontro herramientas en oferta','errors_muebles': f'Disculpe, no se encontro muebles en oferta'}       
+        context = {"bienvenida": f"Bienvenido {username}",'errors_herramientas': f'Disculpe, no se encontro herramientas en oferta','errors_muebles': f'Disculpe, no se encontro muebles en oferta'}       
     
     return render(request, 'index.html', context = context)  
 
