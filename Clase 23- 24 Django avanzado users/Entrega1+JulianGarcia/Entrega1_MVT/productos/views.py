@@ -20,7 +20,6 @@ class Productos_all(ListView):
     queryset = Productos.objects.filter(available = True) # para mostras si estan activos    
     
 
-
 # Product_detail.html view para el detalle 
 
 class Detail_product(DetailView):
