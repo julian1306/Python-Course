@@ -18,14 +18,15 @@ from Entrega1_MVT.forms import User_registration_form # registro custom
 
 def register_view(request):
     if request.method == "GET":                                 # si es por GET osea cuando apenas ingresa a la pag 
-        form = User_registration_form()                               # formulario importado linea 8
+        form = User_registration_form()
+                                    
         context = {"form":form}
         return render(request,"auth/register.html", context=context)
 
     elif request.method == "POST":                                      # si es post osea manda el formulario por post 
         form = User_registration_form(request.POST)           #le pasa la data al POST 
         if form.is_valid():
-            form.save()
+            form.save()                                 # Aca lo guarda 
             #Aca lo logea 
             username = form.cleaned_data["username"] 
             password = form.cleaned_data["password1"]

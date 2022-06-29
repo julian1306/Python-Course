@@ -1,5 +1,6 @@
 from dataclasses import fields
 from msilib.schema import Class
+from tkinter import Widget
 from django import forms 
 from django.contrib.auth.forms import UserCreationForm     # importo el form de creae el user por defecto django para modificar
 from django.contrib.auth.models import User              # importo el usuario por defecto de django
