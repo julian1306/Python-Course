@@ -8,19 +8,17 @@ Registro
 
 {% block contenido %}          
 
-
-
-
 {% if form %}
-    <h2 style="margin-left:65rem;margin-top:5rem"> Registro </h2>
-    <form action="" method="POST" enctype="multipart/form-data" style="margin-left:65rem;margin-top:3rem">   <!--  Aca si viene por post hace-->
+    <h2 style="text-align:center;margin-bottom: 40px;"> Registro </h2>
+    <form style="text-align:center" action="" method="POST" enctype="multipart/form-data">   <!--  Aca si viene por post hace-->
         {% csrf_token %}               <!-- token va siempre-->
-        <table>                     <!-- hace que lo muestre como tabla-->
-        {{form.as_table}}        <!-- muestra el formulario que creamos -->
-        </table>
-        <input type="submit", value="Login">   <!-- el boton para enviar -->
+        <table style="margin-left:auto;margin-right:auto;margin-bottom: 30px;"> 
+            {{form.as_table}}   
+        </table>    <!-- hace que lo muestre como tabla-->
+        <input style="text-align:center" type="submit", value="Login">   <!-- el boton para enviar -->
     </form>    
 {% endif %}
+
 
 {% if errors %}
 <h5 style="margin-left:40rem;margin-top:3rem">{{errors}} </h5>
