@@ -51,28 +51,29 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contacto/">Contacto</a>
-                </li>
-                {% if user.is_authenticated%}
-                <li class="nav-item" style="margin-left:80rem">
-                    <a class="nav-link" style="color:cadetblue" href="/logout/">Logout</a>
-                </li>
-                {% else%}
-                <li class="nav-item" style="margin-left:80rem" >
-                    <a class="nav-link" style="color:cadetblue" href="/login/">Login</a>
-                </li>    
-                <li class="nav-item">
-                    <a class="nav-link" style="color:cadetblue" href="/registrer/">Registrer</a>
-                </li>
-                {% endif %}    
+                    <a class="nav-link" href="/contacto/">Contacto</a>   
             </ul>
+            <ul class="navbar-nav margin-right:-5px">
+            {% if user.is_authenticated%}
+            <li class="nav-item">
+                <a class="nav-link" style="color:cadetblue" href="/logout/">Logout</a>
+            </li>
+            {% else%}
+            <li class="nav-item">
+                <a class="nav-link" style="color:cadetblue" href="/login/">Login</a>
+            </li>    
+            <li class="nav-item">
+                <a class="nav-link" style="color:cadetblue" href="/registrer/">Registrer</a>
+            </li>
+            {% endif %}
             {% block busqueda %}
             </form> <!-- Busqueda -->
             <form class="form-inline my-2 my-lg-0" action="/productos/buscar_productos/" method="GET">
                 <input class="form-control mr-sm-2" type="text" placeholder="Buscar Todas Categorias" aria-label="Search" name='search'>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
             </form>
-            {% endblock %}
+        {% endblock %}
+            </ul>
         </div>
     </nav>
     {% if user.is_authenticated%}
