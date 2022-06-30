@@ -31,6 +31,20 @@ class Productos_muebles(Productos):
     capacidad = models.CharField(max_length=30,blank=True, null=True)
 
 
+
+
+class Muebles_exterior(Productos):
+    resistencia = models.CharField(max_length=30,blank=True, null=True)
+
+
+
+
+
+
+
+
+
+# CONTACTO 
 class Contacto(models.Model):
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)

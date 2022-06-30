@@ -11,6 +11,8 @@ from productos.forms import Contacto_form
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm   ### Formulario para auth y registrer default django 
 from django.contrib.auth import authenticate, login, logout     # verifica la auth y el login 
 from Entrega1_MVT.forms import User_registration_form # registro custom 
+from django.contrib.auth.mixins import LoginRequiredMixin # para req de logeado
+
 
 
 #def registro 
@@ -19,7 +21,6 @@ from Entrega1_MVT.forms import User_registration_form # registro custom
 def register_view(request):
     if request.method == "GET":                                 # si es por GET osea cuando apenas ingresa a la pag 
         form = User_registration_form()
-                                    
         context = {"form":form}
         return render(request,"auth/register.html", context=context)
 
@@ -42,7 +43,6 @@ def register_view(request):
 # def para login 
 
 def login_view(request):
-    
     if request.method == "GET":                                 # si es por GET osea cuando apenas ingresa a la pag 
         form = AuthenticationForm() # formulario importado linea 8
         context = {"form":form}
