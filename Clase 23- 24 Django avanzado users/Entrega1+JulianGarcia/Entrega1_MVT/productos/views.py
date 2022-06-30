@@ -3,11 +3,13 @@ from itertools import product
 from multiprocessing import context
 from unicodedata import name
 from xml.dom.minidom import Document
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from productos.models import Productos, Productos_herramientas, Productos_muebles, Contacto
 from productos.forms import Product_form, Herramientas_form, Muebles_form    # Aca importo el formulario 
 from django.views.generic import ListView, DetailView , CreateView, DeleteView , UpdateView # Aca importamos para la list view para las class 
 from django.urls import reverse  # para mandar a otra funcion se usa en linea 33 
+from django.contrib.auth.mixins import LoginRequiredMixin # para req de logeado 
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -28,7 +30,7 @@ class Detail_product(DetailView):
 
 # View para create_product.html 
 
-class Create_product(CreateView):
+class Create_product(LoginRequiredMixin,CreateView):            # para que tenga que estar logeado 
     model = Productos
     template_name = "create_product.html"
     fields = "__all__"
@@ -38,7 +40,7 @@ class Create_product(CreateView):
 
 # Para borrar va a delete_product.html" 
 
-class Delete_product(DeleteView):
+class Delete_product(LoginRequiredMixin,DeleteView):        
     model = Productos
     template_name = "delete_product.html"
 
@@ -47,7 +49,7 @@ class Delete_product(DeleteView):
 
 # Nuevo para update_product.html
 
-class Update_product(UpdateView):
+class Update_product(LoginRequiredMixin,UpdateView):
     model = Productos
     template_name = 'update_product.html'
     fields = '__all__'
@@ -94,28 +96,33 @@ def search_herramientas(request):
     return render(request, 'search_herramientas.html', context = context)  
 
 
+## ver esto 
 
 def create_herramientas(request):
-    if request.method == "GET":
-        form = Herramientas_form()
-        context = {"form":form}
-        return render(request, "create_herramientas.html", context=context)
+    if request.user.is_staff:
+        print("paso is auth")
+        if request.method == "GET":
+            form = Herramientas_form()
+            context = {"form":form}
+            return render(request, "create_herramientas.html", context=context)
+        else:
+            form = Herramientas_form(request.POST, request.FILES) # LA concha de la lora aaca poner request.FILES para la imagen 
+            if form.is_valid():
+                new_product = Productos_herramientas.objects.create(
+                    name = form.cleaned_data['name'],
+                    price = form.cleaned_data['price'],
+                    description = form.cleaned_data['description'],
+                    SKU = form.cleaned_data['SKU'],
+                    available = form.cleaned_data['available'],
+                    imagen = form.cleaned_data['imagen'],
+                    energia = form.cleaned_data['energia'],
+                    clase = form.cleaned_data['clase'],
+                )
+                context = {"new_product":new_product}
+            return render(request, "create_herramientas.html", context=context)    
     else:
-        form = Herramientas_form(request.POST, request.FILES) # LA concha de la lora aaca poner request.FILES para la imagen 
-        if form.is_valid():
-            new_product = Productos_herramientas.objects.create(
-                name = form.cleaned_data['name'],
-                price = form.cleaned_data['price'],
-                description = form.cleaned_data['description'],
-                SKU = form.cleaned_data['SKU'],
-                available = form.cleaned_data['available'],
-                imagen = form.cleaned_data['imagen'],
-                energia = form.cleaned_data['energia'],
-                clase = form.cleaned_data['clase'],
-            )
-            context = {"new_product":new_product}
-        return render(request, "create_herramientas.html", context=context)    
-
+        print("entro en el else")
+        return redirect("login")
 
 
 
@@ -147,27 +154,31 @@ def search_muebles(request):
     return render(request, 'search_muebles.html', context = context)    
 
 
-
+#@login_required ------------------ se puede usar el decorador para forzar que este logeado en  vez de los if manuales 
 def create_muebles(request):
-    if request.method == "GET":
-        form = Muebles_form()
-        context = {"form":form}
-        return render(request, "create_muebles.html", context=context)
+    if request.user.is_staff:
+        if request.method == "GET":
+            form = Muebles_form()
+            context = {"form":form}
+            return render(request, "create_muebles.html", context=context)
+        else:
+            form = Muebles_form(request.POST, request.FILES) # LA concha de la lora aaca poner request.FILES para la imagen 
+            if form.is_valid():
+                new_product = Productos_muebles.objects.create(
+                    name = form.cleaned_data['name'],
+                    price = form.cleaned_data['price'],
+                    description = form.cleaned_data['description'],
+                    SKU = form.cleaned_data['SKU'],
+                    available = form.cleaned_data['available'],
+                    imagen = form.cleaned_data['imagen'],
+                    tipo = form.cleaned_data['tipo'],
+                    capacidad = form.cleaned_data['capacidad'],
+                )
+                context = {"new_product":new_product}
+            return render(request, "create_muebles.html", context=context)
     else:
-        form = Muebles_form(request.POST, request.FILES) # LA concha de la lora aaca poner request.FILES para la imagen 
-        if form.is_valid():
-            new_product = Productos_muebles.objects.create(
-                name = form.cleaned_data['name'],
-                price = form.cleaned_data['price'],
-                description = form.cleaned_data['description'],
-                SKU = form.cleaned_data['SKU'],
-                available = form.cleaned_data['available'],
-                imagen = form.cleaned_data['imagen'],
-                tipo = form.cleaned_data['tipo'],
-                capacidad = form.cleaned_data['capacidad'],
-            )
-            context = {"new_product":new_product}
-        return render(request, "create_muebles.html", context=context)    
+        return redirect("login") 
+        #kwargs = {'pk':self.object.pk}
 
 
 

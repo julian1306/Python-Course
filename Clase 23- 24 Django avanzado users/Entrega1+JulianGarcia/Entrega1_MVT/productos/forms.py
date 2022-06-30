@@ -14,7 +14,6 @@ class Product_form(forms.ModelForm):                   # Aca lo creo pero de man
         fields = '__all__'
 
 
-
 class Herramientas_form(forms.ModelForm):
     class Meta:
         model = Productos_herramientas
