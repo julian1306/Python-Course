@@ -24,7 +24,7 @@ urlpatterns = [
     path("", index ,  name= "index" ),   # - Pagina de inicio
     path("productos/", include("productos.urls")), #- Subdirectorio Productos
     path("contacto/", contacto , name= "contacto" ),
-    path("login/", login_view ,{'foo': 'bar'}, name= "login" ),
+    path("login/", login_view , name= "login" ),
     path("logout/", logout_view , name= "logout" ),
     path("registrer/", register_view , name= "register" ),
     
