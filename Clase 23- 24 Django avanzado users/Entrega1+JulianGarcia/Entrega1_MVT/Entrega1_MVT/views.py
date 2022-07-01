@@ -42,7 +42,7 @@ def register_view(request):
 
 # def para login 
 
-def login_view(request,**kwargs): # NEcesita el kwargs para que funcione el next 
+def login_view(request):  
 
     if request.method == "GET":                                 # si es por GET osea cuando apenas ingresa a la pag 
         form = AuthenticationForm() # formulario importado linea 8
