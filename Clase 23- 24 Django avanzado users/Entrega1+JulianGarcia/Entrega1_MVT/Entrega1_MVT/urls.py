@@ -21,10 +21,10 @@ from django.conf.urls.static import static # para imagenes
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", index , name= "index" ),   # - Pagina de inicio
+    path("", index ,  name= "index" ),   # - Pagina de inicio
     path("productos/", include("productos.urls")), #- Subdirectorio Productos
     path("contacto/", contacto , name= "contacto" ),
-    path("login/", login_view , name= "login" ),
+    path("login/", login_view ,{'foo': 'bar'}, name= "login" ),
     path("logout/", logout_view , name= "logout" ),
     path("registrer/", register_view , name= "register" ),
     

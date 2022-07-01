@@ -9,7 +9,7 @@ from productos.forms import Product_form, Herramientas_form, Muebles_form    # A
 from django.views.generic import ListView, DetailView , CreateView, DeleteView , UpdateView # Aca importamos para la list view para las class 
 from django.urls import reverse  # para mandar a otra funcion se usa en linea 33 
 from django.contrib.auth.mixins import LoginRequiredMixin # para req de logeado 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required          # decorador para pedir que tenga que estar logeado mas facil 
 
 # Create your views here.
 
@@ -98,6 +98,8 @@ def search_herramientas(request):
 
 ## ver esto 
 
+
+@login_required                               # Decorador para que tenga que estar logeado 
 def create_herramientas(request):
     if request.user.is_staff:
         print("paso is auth")
@@ -122,7 +124,8 @@ def create_herramientas(request):
             return render(request, "create_herramientas.html", context=context)    
     else:
         print("entro en el else")
-        return redirect("login")
+        originate_web = "create_herramientas"
+        return redirect("login", {'foo': 'pepe'})
 
 
 
