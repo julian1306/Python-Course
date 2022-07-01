@@ -12,7 +12,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm   ###
 from django.contrib.auth import authenticate, login, logout     # verifica la auth y el login 
 from Entrega1_MVT.forms import User_registration_form # registro custom 
 from django.contrib.auth.mixins import LoginRequiredMixin # para req de logeado
-from productos.views import create_herramientas
+
 
 
 
@@ -42,7 +42,7 @@ def register_view(request):
 
 # def para login 
 
-def login_view(request,**kwargs):
+def login_view(request,**kwargs): # NEcesita el kwargs para que funcione el next 
 
     if request.method == "GET":                                 # si es por GET osea cuando apenas ingresa a la pag 
         form = AuthenticationForm() # formulario importado linea 8
@@ -57,8 +57,11 @@ def login_view(request,**kwargs):
             password = form.cleaned_data["password"] # agarra la pass del form y le asig la variable password 
             user = authenticate(username=username, password=password) # aca el authenticate compara y te devuelve el user
             login(request, user)             #Logea a ese usuario
-            next = request.GET.get('next') 
-            return redirect(next)                         # lo redirecciono al index      
+            next = request.GET.get('next')               ## !!!!! Clave para que lo mande a la pagina de donde venia next
+            if next:                                    # if por si existe el next para no romper el login normal 
+                return redirect(next)                             # aca lo mando por donde venia 
+            else:
+                return redirect("index")     # lo redirecciono al index  
         else:
             errors = form.errors                         # te tira los errores del formulario 
             form = AuthenticationForm()                  #traigo el form de vuelta  
