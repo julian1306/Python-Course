@@ -123,9 +123,7 @@ def create_herramientas(request):
                 context = {"new_product":new_product}
             return render(request, "create_herramientas.html", context=context)    
     else:
-        print("entro en el else")
-        originate_web = "create_herramientas"
-        return redirect("login", {'foo': 'pepe'})
+        return redirect("login")
 
 
 
