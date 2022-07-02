@@ -123,6 +123,14 @@ def create_herramientas(request):
                 context = {"new_product":new_product}
             return render(request, "create_herramientas.html", context=context)    
     else:
+        #para ver el path donde esta y despues mandarlo seguir  viendo como hacer y pasar el next a mano hay 
+        #BORRAR DECORADOR SINO NO LLEGA ACA 
+        path = request.get_full_path()
+        next = "next"+"="+path
+        print(next)
+
+
+
         return redirect("login")
 
 
@@ -155,7 +163,7 @@ def search_muebles(request):
     return render(request, 'search_muebles.html', context = context)    
 
 
-#@login_required ------------------ se puede usar el decorador para forzar que este logeado en  vez de los if manuales 
+@login_required  ###------------------ se puede usar el decorador para forzar que este logeado en  vez de los if manuales 
 def create_muebles(request):
     if request.user.is_staff:
         if request.method == "GET":
