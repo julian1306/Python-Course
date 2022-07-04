@@ -22,7 +22,7 @@ class Productos(models.Model):
     SKU = models.CharField(max_length=30, unique=True) #unique=True) # --------- Aca le digo que el numero de identificacion tiene que ser unico 
     available = models.BooleanField(default=True) # ----------------- Aca le digo que por default esta disponible
     imagen = models.ImageField(upload_to="productos_imagenes", null=True)
-    category = models.ForeignKey('Categoria', on_delete=models.CASCADE, related_name='productos',blank=True, null=True)
+    category = models.ForeignKey('Categoria', on_delete=models.CASCADE, related_name='productos',blank=True, null=True) # relacion con categorias 
     class Meta:
         #abstract = True
         verbose_name= "producto"                      # nombre para el portal de admin en single el otro en plural
