@@ -15,6 +15,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixi
 from django.views.generic import View, ListView, DetailView , CreateView, DeleteView , UpdateView
 from django.contrib.auth.models import User  
 from django.urls import reverse  
+from django.contrib.auth.decorators import permission_required
 
 
 
@@ -142,11 +143,11 @@ def contacto(request):
         return render(request, "create_contact.html", context=context)  
 
 
-## permisos custom 
+## permisos custom # 
 
-class SecureView(PermissionRequiredMixin, View):
+class SecureView(PermissionRequiredMixin):
     ...
-    permission_required = 'user.is_staff' 
+    permission_required = 'auth.change_user'             # para varios ( 'auth.change_user'  , "otro permiso")
     ...
 
 
@@ -156,7 +157,8 @@ class SecureView(PermissionRequiredMixin, View):
 
 
 
-class User_all(SecureView,ListView):  
+class User_all(SecureView,ListView):                 # reemplazar (PermissionRequiredMixin, Listview)
+    #permission_required = 'auth.change_user'              # se puede poner aca para poniendo directo el PermissionRequiredMixin de django u abajo el permission_required que uno quiera 
     model = User
     template_name = "listar_usuarios.html" 
 
