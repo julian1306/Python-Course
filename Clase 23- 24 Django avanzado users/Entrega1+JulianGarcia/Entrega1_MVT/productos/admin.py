@@ -9,7 +9,9 @@ from productos.models import Productos, Productos_herramientas, Productos_mueble
 #admin.site.register(Contacto)  
 
 
-admin.site.register(Categoria)
+@admin.register(Categoria)   # Nueva forma de registrarlo 
+class CategoriaAdmin(admin.ModelAdmin):  # forma para que te muestre lo que quieras en el admin site 
+    list_display = ["name", "description"] 
 
 
 @admin.register(Productos)   # Nueva forma de registrarlo 
