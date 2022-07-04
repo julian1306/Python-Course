@@ -1,5 +1,5 @@
 from django.contrib import admin
-from productos.models import Productos, Productos_herramientas, Productos_muebles, Contacto
+from productos.models import Productos, Productos_herramientas, Productos_muebles, Contacto, Categoria
 
 # Register your models here.
 
@@ -7,6 +7,10 @@ from productos.models import Productos, Productos_herramientas, Productos_mueble
 #admin.site.register(Productos_herramientas)    
 #admin.site.register(Productos_muebles)
 #admin.site.register(Contacto)  
+
+
+admin.site.register(Categoria)
+
 
 @admin.register(Productos)   # Nueva forma de registrarlo 
 class ProductosAdmin(admin.ModelAdmin):  # forma para que te muestre lo que quieras en el admin site 

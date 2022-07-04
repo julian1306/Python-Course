@@ -5,6 +5,14 @@ from django.db import models
 
 # Create your models here.
 
+class Categoria(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = 'categoria'
+        verbose_name_plural = 'categorias'
+
 
 class Productos(models.Model):
     name = models.CharField(max_length=100)
@@ -14,6 +22,7 @@ class Productos(models.Model):
     SKU = models.CharField(max_length=30, unique=True) #unique=True) # --------- Aca le digo que el numero de identificacion tiene que ser unico 
     available = models.BooleanField(default=True) # ----------------- Aca le digo que por default esta disponible
     imagen = models.ImageField(upload_to="productos_imagenes", null=True)
+    category = models.ForeignKey('Categoria', on_delete=models.CASCADE, related_name='productos',blank=True, null=True)
     class Meta:
         #abstract = True
         verbose_name= "producto"                      # nombre para el portal de admin en single el otro en plural
