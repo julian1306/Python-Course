@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from Entrega1_MVT.views import index, contacto, login_view, logout_view, register_view
+from Entrega1_MVT.views import index, contacto, login_view, logout_view, register_view, Update_User, Detail_user,User_all
 from django.conf import settings # importo para lo de media 
 from django.conf.urls.static import static # para imagenes 
 
@@ -27,6 +27,10 @@ urlpatterns = [
     path("login/", login_view , name= "login" ),
     path("logout/", logout_view , name= "logout" ),
     path("registrer/", register_view , name= "register" ),
+    path("listar_usuarios/", User_all.as_view(), name = "listar_usuarios"),
+    path("detail_user/<int:pk>/", Detail_user.as_view(), name = "detail_user"),
+    path("update_user/<int:pk>/", Update_User.as_view() , name= "update_user"),
+
     
 
 ]

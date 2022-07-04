@@ -11,7 +11,10 @@ from productos.forms import Contacto_form
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm   ### Formulario para auth y registrer default django 
 from django.contrib.auth import authenticate, login, logout     # verifica la auth y el login 
 from Entrega1_MVT.forms import User_registration_form # registro custom 
-from django.contrib.auth.mixins import LoginRequiredMixin # para req de logeado
+from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin  # para req de logeado
+from django.views.generic import View, ListView, DetailView , CreateView, DeleteView , UpdateView
+from django.contrib.auth.models import User  
+from django.urls import reverse  
 
 
 
@@ -108,7 +111,7 @@ def index(request):
 
 
     #Ofertas general index 
-
+    #OFertas de articulos Hogar
     search_products_herramientas = Productos_herramientas.objects.filter(clase = "Hogar")
     search_products_muebles = Productos_muebles.objects.filter(tipo = "Hogar")
 
@@ -137,3 +140,40 @@ def contacto(request):
             context = {"new_contact":new_contact}
 
         return render(request, "create_contact.html", context=context)  
+
+
+## permisos custom 
+
+class SecureView(PermissionRequiredMixin, View):
+    ...
+    permission_required = 'user.is_staff' 
+    ...
+
+
+    # 'auth.change_user'
+
+
+
+
+
+class User_all(SecureView,ListView):  
+    model = User
+    template_name = "listar_usuarios.html" 
+
+
+
+class Detail_user(LoginRequiredMixin,DetailView):
+    model= User
+    template_name = "detail_user.html"
+
+
+
+class Update_User(LoginRequiredMixin,UpdateView):
+    model = User
+    template_name = 'update_user.html'
+    fields = '__all__'
+
+
+    def get_success_url(self):
+        return reverse('detail_user', kwargs = {'pk':self.object.pk}) # lo mando al url dle name detail_product con el id
+
