@@ -5,7 +5,7 @@ from django.urls import reverse
 from users.models import User_profile  
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin  # para req de logeado
 from django.views.generic import View, ListView, DetailView , CreateView, DeleteView , UpdateView
-from users.forms import User_change_form
+from users.forms import User_change_form_lite
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 
 # Create your views here.
@@ -19,8 +19,9 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, User
 
 class SecureView(PermissionRequiredMixin):
     ...
-    permission_required = 'auth.view_user'             # para varios ( 'auth.change_user'  , "otro permiso")
+    permission_required = ('auth.add_user','auth.change_user','auth.delete_user','auth.view_user')           # para varios ( 'auth.change_user'  , "otro permiso")
     ...
+    # Brian tiene esos permisos asi que pasa .
 
 
     # 'auth.change_user'
@@ -79,7 +80,7 @@ class Detail_user_lite(LoginRequiredMixin,DetailView):
 
 class Edit_user_lite(LoginRequiredMixin,UpdateView):
     #model = User
-    form_class = User_change_form
+    form_class = User_change_form_lite
     template_name = 'edit_user_lite.html'
 
 
