@@ -39,7 +39,7 @@ class Detail_user(LoginRequiredMixin,DetailView):
     template_name = "detail_user.html"
 
 
-
+## YA NO NECESARIO OLD 
 class Update_User(LoginRequiredMixin,UpdateView):
     model = User
     template_name = 'update_user.html'
@@ -51,11 +51,11 @@ class Update_User(LoginRequiredMixin,UpdateView):
 
 
 # Con from class para modificar mejor 
-
-class Edit_user(LoginRequiredMixin,UpdateView):
+# Especifico para el listar usuarios de los admin / staff 
+class Edit_user_full(LoginRequiredMixin,UpdateView):
     model = User
     form_class = UserChangeForm
-    template_name = 'edit_user.html'
+    template_name = 'edit_user_full.html'
 
 
     #def get_object(self):                                 # funcion para sacar el user en class 
