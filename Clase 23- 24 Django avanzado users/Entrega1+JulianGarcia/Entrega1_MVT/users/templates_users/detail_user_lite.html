@@ -11,7 +11,7 @@ Detalles Usuario
 
 {{error}}
 
-{% if request.user.is_staff %}
+{% if user.is_authenticated %}
 
 <div class="d-flex" style="margin-top:5rem ; margin-left: 7rem">
     <div class="card" style="width: 18rem;">
@@ -41,4 +41,5 @@ Detalles Usuario
 <h2 class="display-4">NO TIENE PERMISOS PARA ESTAR EN ESTA PAGINA </h2>    
 
 {% endif %} 
+
 {% endblock %}

@@ -7,6 +7,7 @@ from users.views import Detail_profile, Update_profile , Update_User, Detail_use
 from django.conf import settings 
 from django.conf.urls.static import static 
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 
 
 urlpatterns = [
@@ -17,7 +18,7 @@ urlpatterns = [
     path("update_user/<int:pk>/", Update_User.as_view() , name= "update_user"),
     path("edit_user_full/<int:pk>/", Edit_user_full.as_view() , name= "edit_user_full"),
     path("edit_user_lite/<int:pk>/", Edit_user_lite.as_view() , name= "edit_user_lite"),
-    path("password/", auth_views.PasswordChangeDoneView.as_view(), name = "password"),
+    path("edit_user_lite/password/", auth_views.PasswordChangeView.as_view(), name = "password"), # para cambiar la pass del USER
 
 
     path("detail_profile/<int:pk>/", Detail_profile.as_view(), name = "detail_profile"), # aca con el <int:id> aclaramos que le vamos a pasar un entero llamado pk

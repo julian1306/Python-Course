@@ -6,7 +6,7 @@ Actualizar Usuario
 
 {% block contenido %}
 
-    {% if user.is_authenticated%}
+{% if user.is_authenticated %}
     {% if form %}
         <h2 style="margin-left:30rem">Complete los campos a actualizar</h2>
         <form action="" method="POST" style="margin-left:40rem;margin-top:7rem">
@@ -17,9 +17,9 @@ Actualizar Usuario
             <input type="submit" , value="Enviar">
         </form>
     {% endif %}
-    {% else %} 
+{% else %} 
     <h2 class="display-4">NO TIENE PERMISOS PARA ESTAR EN ESTA PAGINA </h2>    
     
-    {% endif %} 
+{% endif %} 
     
 {% endblock %}

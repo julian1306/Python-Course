@@ -8,7 +8,7 @@ from django.contrib.auth.models import User              # importo el usuario po
 
 
 
-class User_change_form(UserChangeForm):
+class User_change_form_lite(UserChangeForm):
     username = forms.CharField(max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}) )
     email = forms.EmailField()
     first_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}) )

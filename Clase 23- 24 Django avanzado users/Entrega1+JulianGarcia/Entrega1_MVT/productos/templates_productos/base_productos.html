@@ -65,7 +65,7 @@
                 {% if user.is_authenticated%}
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/users/detail_user_lite/{{request.user.user_profile.id}}/">Ver Usuario</a>
+                    <a class="nav-link" href="/users/detail_user_lite/{{request.user.id}}/">Ver Usuario</a>
                 </li>
 
                 {% if user.user_profile%}
