@@ -67,11 +67,14 @@ class Edit_user_full(LoginRequiredMixin,UpdateView):
 
 
 
+# lite para el boton de 
+
 class Detail_user_lite(LoginRequiredMixin,DetailView):
     model= User
     template_name = "detail_user_lite.html"
 
-
+    def get_object(self):                                 # funcion para sacar el request user en class 
+        return self.request.user
 
 
 class Edit_user_lite(LoginRequiredMixin,UpdateView):
