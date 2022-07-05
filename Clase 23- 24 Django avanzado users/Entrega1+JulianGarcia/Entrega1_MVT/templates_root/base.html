@@ -47,6 +47,12 @@
             </ul>
             <ul class="navbar-nav" style="margin-right: -5px ;">
                 {% if user.is_authenticated%}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/detail_profile/{{request.user.user_profile.id}}/">Ver perfil</a>
+                </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link" style="color:rgb(163, 4, 4)">
                         <h5>{{request.user.username}}</h5>

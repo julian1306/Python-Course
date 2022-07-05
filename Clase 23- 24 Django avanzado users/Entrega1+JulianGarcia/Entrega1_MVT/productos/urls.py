@@ -3,7 +3,8 @@
 
 from django.urls import path, include
 from productos.views import Productos_all, Detail_product , Create_product ,Delete_product, Update_product, search_product,listar_herramientas,search_herramientas,create_herramientas,listar_muebles, search_muebles, create_muebles
-
+from django.conf import settings 
+from django.conf.urls.static import static 
 
 
 
@@ -24,3 +25,8 @@ urlpatterns = [
 
     
 ]
+
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

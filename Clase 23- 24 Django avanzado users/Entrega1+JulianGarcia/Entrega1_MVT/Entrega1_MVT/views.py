@@ -89,7 +89,8 @@ def logout_view(request):
 def index(request):
     print(request.user)                                 # para saber el user 
     print(request.user.is_authenticated)                # para saner si el user esta auth 
-    print(request.user.user_profile)
+    if request.user.is_authenticated:
+        print(request.user.user_profile.id)
     print(request.user.id)                   # me tira el perfil del usuario 
 
 
