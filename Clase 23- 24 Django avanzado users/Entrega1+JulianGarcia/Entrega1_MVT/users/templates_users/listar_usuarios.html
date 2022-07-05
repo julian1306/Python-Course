@@ -6,9 +6,10 @@ Listar Usuarios
 
 {% block contenido %} 
 
+{% if request.user.is_staff %}  
+
 <div class="d-flex" style="margin-top:5rem ; margin-left: 7rem">
     {% for user in object_list %}          <!-- Aca el nombre por default que manda al tempalte es object_list siempre se usa asi  -->
-    {% if user.is_staff != True %}
     <div class="card" style="width: 18rem;">
         {% if user.user_profile.image %}             <!-- object va por defecto por la nueva view de listview -->
         <img src={{user.user_profile.image.url}} class="card-img-top" alt="..."> 
@@ -19,13 +20,20 @@ Listar Usuarios
         <h6 class="card-title">Stuff:{{user.is_staff}}</h6>
         <h6 class="card-title">Email:{{user.email}}</h6>
         <h6 class="card-title">Telefono:{{user.user_profile.phone}}</h6>
+        <h6 class="card-title">Level:{{user.level}}</h6>
 
 
         <a href="/users/detail_user/{{user.id}}/" class="btn btn-primary">Detalles</a> <!-- Aca lo mando al url del detalle  -->
         </div>
     </div>
-    {% endif %}
+
     {% endfor %}
 </div>
+
+{% else %} 
+<h2 class="display-4">NO TIENE PERMISOS PARA ESTAR EN ESTA PAGINA </h2>    
+
+{% endif %} 
+
 
 {% endblock %}

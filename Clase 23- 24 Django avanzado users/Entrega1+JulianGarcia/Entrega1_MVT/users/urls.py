@@ -14,7 +14,7 @@ urlpatterns = [
     path("listar_usuarios/", User_all.as_view(), name = "listar_usuarios"),
     path("detail_user/<int:pk>/", Detail_user.as_view(), name = "detail_user"),
     path("update_user/<int:pk>/", Update_User.as_view() , name= "update_user"),
-    path("edit_user/<int:pk>/", Edit_user.as_view() , name= "edit_user_user"),
+    path("edit_user/<int:pk>/", Edit_user.as_view() , name= "edit_user"),
     path("password/", auth_views.PasswordChangeDoneView.as_view(), name = "password"),
 
 

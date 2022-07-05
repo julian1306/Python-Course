@@ -19,7 +19,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, User
 
 class SecureView(PermissionRequiredMixin):
     ...
-    permission_required = 'auth.change_user'             # para varios ( 'auth.change_user'  , "otro permiso")
+    permission_required = 'auth.view_user'             # para varios ( 'auth.change_user'  , "otro permiso")
     ...
 
 
@@ -50,12 +50,17 @@ class Update_User(LoginRequiredMixin,UpdateView):
         return reverse('detail_user', kwargs = {'pk':self.object.pk}) # lo mando al url dle name detail_product con el id
 
 
+# Con from class para modificar mejor 
+
 class Edit_user(LoginRequiredMixin,UpdateView):
+    model = User
     form_class = UserChangeForm
     template_name = 'edit_user.html'
 
-    def get_object(self):                                 # funcion para sacar el user en class 
-        return self.request.user
+
+    #def get_object(self):                                 # funcion para sacar el user en class 
+    #    return self.request.user
+
 
     def get_success_url(self):
         return reverse('detail_user', kwargs = {'pk':self.object.pk}) 
