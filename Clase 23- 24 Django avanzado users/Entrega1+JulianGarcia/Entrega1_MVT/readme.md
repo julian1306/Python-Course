@@ -12,21 +12,21 @@ level: 5
 
 ## STAFF USER  : 
 user : brian
-pass: Coderhose123
+pass: Coderhouse123
 level: 4
 
 user : maxi
-pass: Coderhose123
+pass: Coderhouse123
 level: 4
 
 
 ## Customer/Basic user : 
 user : sebas
-pass: Coderhose123
+pass: Coderhouse123
 level: 3 
 
 user : dani
-pass: Coderhose123
+pass: Coderhouse123
 level : 2
 
 
