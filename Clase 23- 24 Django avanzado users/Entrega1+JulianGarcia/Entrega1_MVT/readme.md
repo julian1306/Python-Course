@@ -28,8 +28,18 @@ level: 3
 user : dani
 pass: Coderhouse123
 level : 2
+Sin perfil 
 
+user : prueba
+pass: Coderhouse123
+level : 2
+Sin perfil 
+
+user : prueba2
+pass: Coderhouse123
+level : 0
+Sin perfil 
 
 
 ## Explicacion: 
-LA idea es un Ecommerce, cree varais categorias con herencia donde desde el index se ven ofertas de productos catalogados como hogar, en la ventana productos se listas y se pueden buscar en todos , luego en el despelgable estan las categorias que se dividen en herramientas y muebles dentro de cada uno se buscan solo herramientas o mubles el buscador tambien cambia para solo filtrar en la categoria. luego hay un formularios para cada categoria, uno para la categoria padre , y luego un formulario de contacto. 
+Ver video 
