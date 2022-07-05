@@ -128,9 +128,6 @@ def create_herramientas(request):
         path = request.get_full_path()
         next = "next"+"="+path
         print(next)
-
-
-
         return redirect("login")
 
 
