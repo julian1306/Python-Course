@@ -97,20 +97,45 @@ def index(request):
     username = request.user                    # aca para que saque el user que esta logeado y lo pueda mostra en el context con un "message"
 
 
-
-    if request.user.is_superuser:
-        for product in Productos.objects.filter(available=True):
-            multiplier = 10/100
-            old_price = product.price
-            product.new_price = ceil(old_price - (old_price * multiplier))
-            product.save(update_fields=['new_price'])
-            print(product.name, product.price, product.new_price)
+    if request.user.is_authenticated:
+        if request.user.level == 5 :
+            for product in Productos.objects.filter(available=True):
+                multiplier = 50/100                   # 50% 
+                old_price = product.price
+                product.new_price = ceil(old_price - (old_price * multiplier))
+                product.save(update_fields=['new_price'])
+                print(product.name, product.price, product.new_price)
+        elif request.user.level == 4:
+            for product in Productos.objects.filter(available=True):
+                multiplier = 40/100                   # 40% 
+                old_price = product.price
+                product.new_price = ceil(old_price - (old_price * multiplier))
+                product.save(update_fields=['new_price'])
+                print(product.name, product.price, product.new_price)
+        elif request.user.level == 3:
+            for product in Productos.objects.filter(available=True):
+                multiplier = 30/100                   # 30% 
+                old_price = product.price
+                product.new_price = ceil(old_price - (old_price * multiplier))
+                product.save(update_fields=['new_price'])
+                print(product.name, product.price, product.new_price)
+        elif request.user.level == 2:
+            for product in Productos.objects.filter(available=True):
+                multiplier = 20/100                   # 30% 
+                old_price = product.price
+                product.new_price = ceil(old_price - (old_price * multiplier))
+                product.save(update_fields=['new_price'])
+                print(product.name, product.price, product.new_price)
+        else:
+            for product in Productos.objects.filter(available=True):
+                product.new_price = 0                                         # Ver como pasarlo a null convierte a 0 ok 
+                product.save(update_fields=['new_price'])
+                print("brian", product.name, product.price, product.new_price)
     else:
         for product in Productos.objects.filter(available=True):
             product.new_price = 0                                         # Ver como pasarlo a null convierte a 0 ok 
             product.save(update_fields=['new_price'])
             print("brian", product.name, product.price, product.new_price)
-    
 
 
 

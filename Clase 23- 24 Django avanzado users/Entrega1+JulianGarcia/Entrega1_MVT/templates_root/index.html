@@ -25,7 +25,7 @@ Inicio
                 <h5 class="card-title">{{producto.name}}</h5>
                 {% if producto.new_price > 0 %}
                 <p class="card-text">Precio sin descuento: ${{producto.price}}</p>
-                <p class="card-text" style="color: red;">Precio con 10% de descuento solo para vos !!! : ${{producto.new_price}}</p>
+                <p class="card-text" style="color: red;">Precio con descuento solo para vos !!! : ${{producto.new_price}}</p>
                 <p class="card-text">Clase: {{producto.clase}}</p>
                 <a href="/productos/product_detail/{{producto.id}}/" class="btn btn-primary">Detalles</a>
                 {% else %}
