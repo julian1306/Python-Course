@@ -88,7 +88,7 @@ class Edit_user_lite(LoginRequiredMixin,UpdateView):
 
 
     def get_success_url(self):
-        return reverse('detail_user', kwargs = {'pk':self.object.pk}) 
+        return reverse('detail_user_lite', kwargs = {'pk':self.object.pk}) 
 
 
 
