@@ -9,23 +9,19 @@ from users.models import User_profile
 # Create your views here.
 
 
-#def profile(request):
-    #user = request.user.user_profile.id
-    #kwargs = {user}
-
-    #return reverse('detail_user', kwargs)
-    #return redirect('detail_user', kwargs = {'pk':user})
-
-
-
-#class Profile(ListView):  
-    #model = User_profile
-    #template_name = "profile.html" 
-
-
-    
-
 
 class Detail_profile(DetailView):
     model = User_profile
     template_name = "detail_profile.html"
+
+
+
+
+class Update_profile(UpdateView):
+    model = User_profile
+    template_name = 'update_profile.html'
+    fields = '__all__'
+
+
+    def get_success_url(self):
+        return reverse('detail_profile', kwargs = {'pk':self.object.pk}) 
