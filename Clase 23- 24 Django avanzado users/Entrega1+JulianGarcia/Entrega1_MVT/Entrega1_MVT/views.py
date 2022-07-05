@@ -171,3 +171,11 @@ def contacto(request):
         return render(request, "create_contact.html", context=context)  
 
 
+
+
+
+def about_us(request):
+    print(request.user)
+
+    context = {"algo": "algo"}
+    return render(request, "about_us.html", context=context)
