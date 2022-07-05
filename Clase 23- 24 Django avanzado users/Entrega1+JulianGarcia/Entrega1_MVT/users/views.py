@@ -5,7 +5,7 @@ from django.urls import reverse
 from users.models import User_profile  
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin  # para req de logeado
 from django.views.generic import View, ListView, DetailView , CreateView, DeleteView , UpdateView
-
+from users.forms import User_change_form
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 
 # Create your views here.
@@ -58,7 +58,7 @@ class Edit_user_full(LoginRequiredMixin,UpdateView):
     template_name = 'edit_user_full.html'
 
 
-    #def get_object(self):                                 # funcion para sacar el user en class 
+    #def get_object(self):                                 # funcion para sacar el request user en class en este caso no conviene 
     #    return self.request.user
 
 
@@ -67,7 +67,25 @@ class Edit_user_full(LoginRequiredMixin,UpdateView):
 
 
 
+class Detail_user_lite(LoginRequiredMixin,DetailView):
+    model= User
+    template_name = "detail_user_lite.html"
 
+
+
+
+class Edit_user_lite(LoginRequiredMixin,UpdateView):
+    #model = User
+    form_class = User_change_form
+    template_name = 'edit_user_lite.html'
+
+
+    def get_object(self):                                 # funcion para sacar el request user en class 
+        return self.request.user
+
+
+    def get_success_url(self):
+        return reverse('detail_user', kwargs = {'pk':self.object.pk}) 
 
 
 
