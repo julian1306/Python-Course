@@ -1,12 +1,13 @@
 from urllib import request
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User 
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from users.models import User_profile  
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin  # para req de logeado
 from django.views.generic import View, ListView, DetailView , CreateView, DeleteView , UpdateView
 from users.forms import User_change_form_lite
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm, PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 
 # Create your views here.
 
@@ -41,14 +42,14 @@ class Detail_user(LoginRequiredMixin,DetailView):
 
 
 ## YA NO NECESARIO OLD 
-class Update_User(LoginRequiredMixin,UpdateView):
-    model = User
-    template_name = 'update_user.html'
-    fields = '__all__'
+#class Update_User(LoginRequiredMixin,UpdateView):
+    #model = User
+    ##template_name = 'update_user.html'
+    #fields = '__all__'
 
-
-    def get_success_url(self):
-        return reverse('detail_user', kwargs = {'pk':self.object.pk}) # lo mando al url dle name detail_product con el id
+#
+    ##def get_success_url(self):
+        #return reverse('detail_user', kwargs = {'pk':self.object.pk}) # lo mando al url dle name detail_product con el id
 
 
 # Con from class para modificar mejor 
@@ -67,6 +68,26 @@ class Edit_user_full(LoginRequiredMixin,UpdateView):
         return reverse('detail_user', kwargs = {'pk':self.object.pk}) 
 
 
+#!!!!!!!!!!!!!!!!!!!!!!! PASSWORD!!!!!!!!!!!!!!!!!!!! 
+
+class Custom_password_change_view(PasswordChangeView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy("index")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# !!!!!!!!!!!!!!!!!!!!!! EDIT USER LITE !!!!!!!!!!!!!!!!!!!!!!!!! 
 
 # lite para el boton de 
 
