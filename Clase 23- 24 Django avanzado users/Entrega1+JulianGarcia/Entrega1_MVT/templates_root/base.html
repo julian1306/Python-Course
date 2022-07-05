@@ -49,6 +49,10 @@
                 {% if user.is_authenticated%}
 
                 <li class="nav-item">
+                    <a class="nav-link" href="/users/detail_profil/{{request.user.user_profile.id}}/">Ver Usuario</a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link" href="/users/detail_profile/{{request.user.user_profile.id}}/">Ver perfil</a>
                 </li>
 

@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from Entrega1_MVT.views import index, contacto, login_view, logout_view, register_view, Update_User, Detail_user,User_all
+from Entrega1_MVT.views import index, contacto, login_view, logout_view, register_view, Update_User, Detail_user,User_all,Edit_user 
 from django.conf import settings # importo para lo de media 
 from django.conf.urls.static import static # para imagenes 
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,6 +32,8 @@ urlpatterns = [
     path("listar_usuarios/", User_all.as_view(), name = "listar_usuarios"),
     path("detail_user/<int:pk>/", Detail_user.as_view(), name = "detail_user"),
     path("update_user/<int:pk>/", Update_User.as_view() , name= "update_user"),
+    path("edit_user/<int:pk>/", Edit_user.as_view() , name= "edit_user_user"),
+    path("password/", auth_views.PasswordChangeDoneView.as_view(), name = "password"),
 
     
 

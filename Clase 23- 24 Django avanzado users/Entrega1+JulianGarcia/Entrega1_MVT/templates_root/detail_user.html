@@ -13,14 +13,17 @@ Detalles Usuario
 
 <div class="d-flex" style="margin-top:5rem ; margin-left: 7rem">
     <div class="card" style="width: 18rem;">
-        {% if object.imagen %}             <!-- object va por defecto por la nueva view de listview -->
-        <img src={{object.imagen.url}} class="card-img-top" alt="...">
+
+        
+        {% if user.user_profile.image %}             <!-- object va por defecto por la nueva view de listview -->
+        <img src={{user.user_profile.image.url}} class="card-img-top" alt="..."> 
         {% endif %}
         <div class="card-body">
         <h5 class="card-title">{{object.username}}</h5>
         <h5 class="card-title">{{object.level}}</h5>
 
-        <a href="/update_user/{{object.id}}/" class="btn btn-primary">Editar</a>
+        <a href="/update_user/{{object.id}}/" class="btn btn-primary">Update_user</a>
+        <a href="/edit_user/{{object.id}}/" class="btn btn-primary">Edit_user</a>
         <a href="/productos/delete_product/{{object.id}}/" class="btn btn-danger">Eliminar</a> <!-- Aca lo mando al url del detalle  -->
         </div>
     </div>
