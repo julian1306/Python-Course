@@ -8,12 +8,21 @@ from productos.models import Productos, Productos_herramientas, Productos_mueble
 from productos.forms import Product_form, Herramientas_form, Muebles_form    # Aca importo el formulario 
 from django.views.generic import ListView, DetailView , CreateView, DeleteView , UpdateView # Aca importamos para la list view para las class 
 from django.urls import reverse  # para mandar a otra funcion se usa en linea 33 
-from django.contrib.auth.mixins import LoginRequiredMixin # para req de logeado 
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin # para req de logeado 
 from django.contrib.auth.decorators import login_required          # decorador para pedir que tenga que estar logeado mas facil 
 
 # Create your views here.
 
 # Products all listar_productos.html 
+
+# Permisos Custom para porductos 
+
+class SecureView_producto(PermissionRequiredMixin):
+    ...
+    permission_required = ('productos.add_productos', 'productos.change_productos','productos.delete_productos','productos.view_productos')
+    ...
+    #Solo admin y brian tiene los permisos requeridos 
+
 
 
 class Productos_all(ListView):  
@@ -30,7 +39,7 @@ class Detail_product(DetailView):
 
 # View para create_product.html 
 
-class Create_product(LoginRequiredMixin,CreateView):            # para que tenga que estar logeado 
+class Create_product(SecureView_producto,CreateView):            # para que tenga que estar logeado 
     model = Productos
     template_name = "create_product.html"
     fields = "__all__"
@@ -40,7 +49,7 @@ class Create_product(LoginRequiredMixin,CreateView):            # para que tenga
 
 # Para borrar va a delete_product.html" 
 
-class Delete_product(LoginRequiredMixin,DeleteView):        
+class Delete_product(SecureView_producto,DeleteView):        
     model = Productos
     template_name = "delete_product.html"
 
@@ -49,7 +58,7 @@ class Delete_product(LoginRequiredMixin,DeleteView):
 
 # Nuevo para update_product.html
 
-class Update_product(LoginRequiredMixin,UpdateView):
+class Update_product(SecureView_producto,UpdateView):
     model = Productos
     template_name = 'update_product.html'
     fields = '__all__'

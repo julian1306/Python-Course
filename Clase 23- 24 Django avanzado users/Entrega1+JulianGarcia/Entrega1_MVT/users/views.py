@@ -18,7 +18,7 @@ from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 
 ## permisos custom # 
 
-class SecureView(PermissionRequiredMixin):
+class SecureView_user(PermissionRequiredMixin):
     ...
     permission_required = ('auth.add_user','auth.change_user','auth.delete_user','auth.view_user')           # para varios ( 'auth.change_user'  , "otro permiso")
     ...
@@ -29,7 +29,7 @@ class SecureView(PermissionRequiredMixin):
 
 
 
-class User_all(SecureView,ListView):                 # reemplazar (PermissionRequiredMixin, Listview)
+class User_all(SecureView_user,ListView):                 # reemplazar (PermissionRequiredMixin, Listview)
     #permission_required = 'auth.change_user'              # se puede poner aca para poniendo directo el PermissionRequiredMixin de django u abajo el permission_required que uno quiera 
     model = User
     template_name = "listar_usuarios.html" 
