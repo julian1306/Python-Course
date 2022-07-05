@@ -1,0 +1,31 @@
+{% extends 'base.html' %} <!-- ACA llamo al base.html-->
+
+{% block titulo %}
+Listar Usuarios
+{% endblock %}
+
+{% block contenido %} 
+
+<div class="d-flex" style="margin-top:5rem ; margin-left: 7rem">
+    {% for user in object_list %}          <!-- Aca el nombre por default que manda al tempalte es object_list siempre se usa asi  -->
+    {% if user.is_staff != True %}
+    <div class="card" style="width: 18rem;">
+        {% if user.imagen %}
+        <img src={{user.imagen.url}} class="card-img-top" alt="...">
+        {% endif %}
+        <div class="card-body">
+        <h5 class="card-title">Nombre de Usuario:{{user.username}}</h5>
+        <h6 class="card-title">Super user:{{user.is_superuser}}</h6>
+        <h6 class="card-title">Stuff:{{user.is_staff}}</h6>
+        <h6 class="card-title">Email:{{user.email}}</h6>
+        <h6 class="card-title">Email:{{user.phone}}</h6>
+
+
+        <a href="/detail_user/{{user.id}}/" class="btn btn-primary">Detalles</a> <!-- Aca lo mando al url del detalle  -->
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -68,7 +68,7 @@ ROOT_URLCONF = 'Entrega1_MVT.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/'templates_root',BASE_DIR/'productos'/'templates_productos'],
+        'DIRS': [BASE_DIR/'templates_root',BASE_DIR/'productos'/'templates_productos',BASE_DIR/'users'/'templates_users'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

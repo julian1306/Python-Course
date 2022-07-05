@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", index ,  name= "index" ),   # - Pagina de inicio
     path("productos/", include("productos.urls")), #- Subdirectorio Productos
+    path("users/", include("users.urls")),
     path("contacto/", contacto , name= "contacto" ),
     path("login/", login_view , name= "login" ),
     path("logout/", logout_view , name= "logout" ),

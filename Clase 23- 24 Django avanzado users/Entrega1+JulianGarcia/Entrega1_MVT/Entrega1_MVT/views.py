@@ -89,7 +89,8 @@ def logout_view(request):
 def index(request):
     print(request.user)                                 # para saber el user 
     print(request.user.is_authenticated)                # para saner si el user esta auth 
-    print(request.user.user_profile)                  # me tira el perfil del usuario 
+    print(request.user.user_profile)
+    print(request.user.id)                   # me tira el perfil del usuario 
 
 
     username = request.user                    # aca para que saque el user que esta logeado y lo pueda mostra en el context con un "message"
@@ -144,6 +145,7 @@ def contacto(request):
         return render(request, "create_contact.html", context=context)  
 
 
+
 ## permisos custom # 
 
 class SecureView(PermissionRequiredMixin):
@@ -153,8 +155,6 @@ class SecureView(PermissionRequiredMixin):
 
 
     # 'auth.change_user'
-
-
 
 
 
