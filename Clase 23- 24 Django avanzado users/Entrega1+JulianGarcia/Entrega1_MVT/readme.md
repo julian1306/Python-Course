@@ -42,4 +42,6 @@ Sin perfil - se le puede crear por view en el boton
 
 
 ## Explicacion: 
-Ver video 
+Ver video : 
+
+https://youtu.be/u-Ak2kpUHRA
