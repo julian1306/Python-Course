@@ -11,7 +11,7 @@ Delete User
 
 
 
-<h3 style="text-align:center;margin-top: 40px;color:black">Estas por Eliminar el Usuario {{object.user}}</h3>  <!-- Ahora Va object por deault del deletview-->
+<h3 style="text-align:center;margin-top: 40px;color:black">Estas por Eliminar el Usuario {{object.username}}</h3>  <!-- Ahora Va object por deault del deletview-->
 
 <form style="text-align:center; margin-top: 40px" method = "POST"> <!-- Ahora va solo por POST A si mismo -->
     {% csrf_token %}

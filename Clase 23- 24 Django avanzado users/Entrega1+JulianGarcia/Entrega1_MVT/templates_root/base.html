@@ -25,6 +25,14 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/productos/listar_productos/">Ver Productos</a>
+                    <!-- aca en el href= le mando la url a donde quiero mandar-->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contacto/">Contacto</a>
+                </li>
+
                 {% if user.is_superuser or user.is_staff or user.level == 5 %}
                 <li class="nav-item active">
                     <!-- ACA lo mando al site admin django si es superuser -->
@@ -37,14 +45,18 @@
                             class="sr-only">(current)</span></a>
                 </li>
                 {% endif%}
-                <li class="nav-item">
-                    <a class="nav-link" href="/productos/listar_productos/">Ver Productos</a>
-                    <!-- aca en el href= le mando la url a donde quiero mandar-->
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contacto/">Contacto</a>
-                </li>
+
+
             </ul>
+
+
+
+
+
+
+
+
+
             <ul class="navbar-nav" style="margin-right: -5px ;">
                 {% if user.is_authenticated%}
 
