@@ -1,0 +1,28 @@
+{% extends 'base.html' %} <!-- ACA llamo al base.html-->
+
+
+{% block titulo %}      
+Delete Profile
+
+{% endblock %}
+
+
+{% block contenido %} 
+
+
+
+<h3 style="text-align:center;margin-top: 40px;color:black">Estas por Eliminar el perfil {{object.user}}</h3>  <!-- Ahora Va object por deault del deletview-->
+
+<form style="text-align:center; margin-top: 40px" method = "POST"> <!-- Ahora va solo por POST A si mismo -->
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">Eliminar</button>
+</form>
+
+
+
+
+{{message}}
+
+
+
+{% endblock %}

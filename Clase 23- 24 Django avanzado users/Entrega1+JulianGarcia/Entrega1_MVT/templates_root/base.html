@@ -55,6 +55,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/users/detail_profile/{{request.user.user_profile.id}}/">Ver perfil</a>
                 </li>
+                {% else%}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/create_profile/{{request.user.id}}/">Crear perfil</a>
+                </li>
+
+
                 {% endif %}
 
                 <li class="nav-item">

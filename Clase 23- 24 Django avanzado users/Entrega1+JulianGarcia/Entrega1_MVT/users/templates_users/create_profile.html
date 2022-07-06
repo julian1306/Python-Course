@@ -1,0 +1,33 @@
+<!-- ACA llamo al base.html-->
+
+{% extends 'base_productos.html' %}    
+
+<!-- ACA llamo al base.html - block titulo-->
+
+{% block titulo %}      
+Create profile
+
+{% endblock %}
+
+<!-- ACA llamo al base.html - block contenido-->
+{% block contenido %}          
+
+{% if form %}
+    <h1 style="text-align:center;margin-bottom: 40px;"> Crear Perfil </h1>
+    <form style="text-align:center" action="" method="POST" enctype="multipart/form-data">   <!--  Aca si viene por post hace-->
+        {% csrf_token %}               <!-- token va siempre-->
+        <table style="margin-left:auto;margin-right:auto;margin-bottom: 30px;"> 
+            {{form.as_table}}   
+        </table>    <!-- hace que lo muestre como tabla-->
+        <input style="text-align:center" type="submit", value="Login">   <!-- el boton para enviar -->
+    </form>                          <!-- cierra el form-->
+
+{% endif %}
+
+
+
+
+
+
+
+{% endblock %}
