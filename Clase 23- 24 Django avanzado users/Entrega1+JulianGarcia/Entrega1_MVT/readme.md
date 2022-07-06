@@ -28,17 +28,17 @@ level: 3
 user : dani
 pass: Coderhouse123
 level : 2
-Sin perfil 
+Sin perfil - se le puede crear por view en el boton 
 
 user : prueba
 pass: Coderhouse123
 level : 2
-Sin perfil 
+Con perfil - se probo imagen default 
 
 user : prueba2
 pass: Coderhouse123
 level : 0
-Sin perfil 
+Sin perfil - se le puede crear por view en el boton 
 
 
 ## Explicacion: 
