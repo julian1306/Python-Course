@@ -11,3 +11,4 @@ for for1 in string_separado:
 
 
 print(lista)
+
